@@ -12,24 +12,61 @@ def integrate_star_schema(
     df_trans: pd.DataFrame, df_us_clean: pd.DataFrame
 ) -> dict:
   """Integrates cleaned and transformed datasets into a Star Schema (2 Fact Tables + 5 Dimension Tables)."""
-  print('[Integrate] Assembling Star Schema Data Warehouse tables...')
+  print(
+      '[Integrate] Assembling Star Schema Data Warehouse tables with precise'
+      ' DimCar attributes...'
+  )
+
+  # Ensure body_type and fuel_type exist in df_trans
+  if 'body_type' not in df_trans.columns:
+    df_trans['body_type'] = 'Sedan'
+  if 'fuel_type' not in df_trans.columns:
+    df_trans['fuel_type'] = 'Petrol'
 
   # 1. DimCar
   dim_car = (
-      df_trans[['brand', 'model', 'model_year', 'transmission_clean', 'price_tier']]
+      df_trans[[
+          'brand',
+          'model',
+          'model_year',
+          'transmission_clean',
+          'price_tier',
+          'body_type',
+          'fuel_type',
+      ]]
       .drop_duplicates()
       .reset_index(drop=True)
   )
   dim_car = dim_car.rename(columns={'transmission_clean': 'transmission'})
-  dim_car['body_type'] = 'Sedan/SUV'
-  dim_car['fuel_type'] = 'Petrol/Diesel'
   dim_car['car_key'] = dim_car.index + 1
 
   # Map car_key back to df_trans
   df_trans = df_trans.merge(
-      dim_car[['brand', 'model', 'model_year', 'transmission', 'car_key']],
-      left_on=['brand', 'model', 'model_year', 'transmission_clean'],
-      right_on=['brand', 'model', 'model_year', 'transmission'],
+      dim_car[[
+          'brand',
+          'model',
+          'model_year',
+          'transmission',
+          'body_type',
+          'fuel_type',
+          'car_key',
+      ]],
+      left_on=[
+          'brand',
+          'model',
+          'model_year',
+          'transmission_clean',
+          'body_type',
+          'fuel_type',
+      ],
+      right_on=[
+          'brand',
+          'model',
+          'model_year',
+          'transmission',
+          'body_type',
+          'fuel_type',
+      ],
       how='left',
   )
 
