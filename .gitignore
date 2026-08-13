@@ -1,0 +1,14 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python cache & checkpoints
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.log
+
+# System files
+.DS_Store
