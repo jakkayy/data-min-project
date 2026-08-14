@@ -305,7 +305,7 @@ Honda,Brio,2013,Manual,1. Eco (<300k),Sedan,Petrol,303
 Mazda,CX-5,2014,Automatic,1. Eco (<300k),SUV,Petrol,304
 Lamborghini,HURACAN,2015,Automatic,4. Premium (>1M),Coupe,Petrol,305
 Porsche,CAYENNE,2019,Automatic,4. Premium (>1M),SUV,Hybrid,306
-Mercedes-Benz,CLE300,2024,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,307
+Mercedes-Benz,CLE300,2024,Automatic,4. Premium (>1M),Sedan,Petrol,307
 Mercedes-Benz,E220,2016,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,308
 Porsche,911,2014,Automatic,4. Premium (>1M),Coupe,Petrol,309
 Toyota,HILUX,2021,Manual,3. Mid-High (500k-1M),Pick-up,EV,310
@@ -882,7 +882,7 @@ Toyota,Corolla,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,880
 Toyota,YARIS,2019,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,881
 BYD,Atto,2023,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,882
 Ford,EVEREST,2015,Automatic,3. Mid-High (500k-1M),SUV,EV,883
-Ford,RANGER,2016,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,884
+Ford,RANGER,2016,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,884
 Mercedes-Benz,E350,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,885
 Kia,GRAND,2018,Automatic,3. Mid-High (500k-1M),Van,Petrol,886
 Mini,COOPER,2019,Automatic,4. Premium (>1M),Sedan,Petrol,887
@@ -1441,89 +1441,929 @@ Toyota,Corolla,2023,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1439
 Toyota,Corolla,2019,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1440
 Mitsubishi,Xpander,2023,Automatic,3. Mid-High (500k-1M),Van,Petrol,1441
 Nissan,Navara,2022,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,1442
-BMW,320d,2020,Automatic,4. Premium (>1M),Sedan,Petrol,1443
-Nissan,SYLPHY,2018,Automatic,1. Eco (<300k),Sedan,Petrol,1444
-BMW,320d,2014,Automatic,3. Mid-High (500k-1M),Hatchback,Diesel,1445
-Mercedes-Benz,S350,2019,Automatic,4. Premium (>1M),Sedan,Petrol,1446
-Mercedes-Benz,GLE300,2021,Automatic,4. Premium (>1M),Sedan,Petrol,1447
-MG,MG5,2022,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1448
-BMW,745Le,2022,Automatic,4. Premium (>1M),Sedan,Petrol,1449
-Mercedes-Benz,S500,2017,Automatic,4. Premium (>1M),Pick-up,Petrol,1450
-Mercedes-Benz,E250,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1451
-Mazda,2,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1452
-Honda,CIVIC,2003,Automatic,1. Eco (<300k),Sedan,Petrol,1453
-Mercedes-Benz,E220,1993,Automatic,1. Eco (<300k),Sedan,Petrol,1454
-Mercedes-Benz,E300,2014,Automatic,1. Eco (<300k),Sedan,Hybrid,1455
-Mazda,2,2018,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1456
-Mazda,2,2019,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1457
-Mazda,BT-50,2023,Automatic,3. Mid-High (500k-1M),Pick-up,Petrol,1458
-Mazda,BT-50,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,Petrol,1459
-Toyota,ESTIMA,2019,Automatic,4. Premium (>1M),Van,Petrol,1460
-Toyota,VIOS,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1461
-Hyundai,Stargazer,2023,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1462
-Toyota,INNOVA,2019,Automatic,3. Mid-High (500k-1M),Van,Petrol,1463
-Ford,FOCUS,2018,Automatic,1. Eco (<300k),Hatchback,Petrol,1464
-Toyota,VELLFIRE,2026,Automatic,4. Premium (>1M),Van,Hybrid,1465
-Toyota,C-HR,2021,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1466
-Suzuki,XL7,2022,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1467
-Nissan,Terra,2019,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1468
-BMW,X3,2013,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1469
-Nissan,ALMERA,2022,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1470
-BMW,X3,2020,Automatic,4. Premium (>1M),SUV,Petrol,1471
-BMW,X5,2022,Automatic,4. Premium (>1M),SUV,Petrol,1472
-BMW,X7,2021,Automatic,4. Premium (>1M),SUV,Petrol,1473
-Toyota,ALPHARD,2021,Automatic,4. Premium (>1M),Sedan,Hybrid,1474
-Mercedes-Benz,C180,2015,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1475
-Volvo,XC40,2019,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1476
-Suzuki,SWIFT,2020,Automatic,1. Eco (<300k),Hatchback,Petrol,1477
-Mercedes-Benz,E250,2010,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1478
-Mercedes-Benz,E250,2011,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1479
-Ford,RANGER,2015,Automatic,1. Eco (<300k),Pick-up,Diesel,1480
-Porsche,CAYENNE,2020,Automatic,1. Eco (<300k),SUV,Hybrid,1481
-Mercedes-Benz,GLA250,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1482
-Mercedes-Benz,CLS250,2014,Automatic,3. Mid-High (500k-1M),Coupe,Diesel,1483
-Mitsubishi,PAJERO,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1484
-Mitsubishi,PAJERO,2013,Automatic,1. Eco (<300k),SUV,Petrol,1485
-Toyota,ALPHARD,2017,Automatic,4. Premium (>1M),Sedan,Hybrid,1486
-Ford,RANGER,2019,Automatic,1. Eco (<300k),Pick-up,Diesel,1487
-BMW,X1,2023,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1488
-Mercedes-Benz,C350,2017,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1489
-BMW,X3,2021,Automatic,4. Premium (>1M),SUV,EV,1490
-BMW,X1,2018,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1491
-Honda,FREED,2010,Automatic,1. Eco (<300k),Van,Petrol,1492
-Toyota,CAMRY,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1493
-Mazda,3,2015,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1494
-Mitsubishi,ATTRAGE,2021,Automatic,1. Eco (<300k),Sedan,Petrol,1495
-Mazda,CX-5,2017,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1496
-MG,ZS,2020,Automatic,1. Eco (<300k),SUV,EV,1497
-Mercedes-Benz,E300,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1498
-BMW,520d,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1499
-Honda,CR-V,2018,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1500
-Nissan,ALMERA,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1501
-Toyota,AVANZA,2020,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1502
-Suzuki,SWIFT,2012,Automatic,1. Eco (<300k),Hatchback,Petrol,1503
-Mazda,2,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1504
-Mazda,CX-3,2021,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1505
-Mazda,2,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1506
-Nissan,MARCH,2019,Automatic,1. Eco (<300k),Hatchback,Petrol,1507
-Isuzu,D-MAX,2017,Automatic,1. Eco (<300k),Pick-up,Diesel,1508
-Hyundai,H-1,2022,Automatic,4. Premium (>1M),Van,Petrol,1509
-Mercedes-Benz,C200,2009,Automatic,1. Eco (<300k),Sedan,Petrol,1510
-Mercedes-Benz,C200,2015,Automatic,3. Mid-High (500k-1M),Van,Petrol,1511
-Hyundai,Staria,2024,Automatic,4. Premium (>1M),Van,Petrol,1512
-BMW,320i,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1513
-Suzuki,Ciaz,2020,Automatic,1. Eco (<300k),Sedan,Petrol,1514
-Mercedes-Benz,CLE300,2025,Automatic,4. Premium (>1M),Coupe,Petrol,1515
-Mitsubishi,TRITON,2006,Automatic,1. Eco (<300k),Pick-up,Diesel,1516
-Volkswagen,NEW,2011,Automatic,1. Eco (<300k),Coupe,Petrol,1517
-Subaru,XV,2018,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1518
-Mazda,3,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1519
-Mercedes-Benz,GLB200,2021,Automatic,4. Premium (>1M),Sedan,Petrol,1520
-BMW,X3,2015,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1521
-BMW,X1,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1522
-Volvo,XC90,2023,Automatic,4. Premium (>1M),SUV,Hybrid,1523
-Mercedes-Benz,GLB200,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1524
-Volvo,XC90,2024,Automatic,4. Premium (>1M),Sedan,Petrol,1525
-Honda,ACCORD,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1526
-Mercedes-Benz,C200,2012,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1527
-Mini,Paceman,2013,Automatic,3. Mid-High (500k-1M),Hatchback,Petrol,1528
+Mitsubishi,Xpander,2022,Automatic,3. Mid-High (500k-1M),Van,Petrol,1443
+BMW,320d,2020,Automatic,4. Premium (>1M),Sedan,Petrol,1444
+Nissan,SYLPHY,2018,Automatic,1. Eco (<300k),Sedan,Petrol,1445
+BMW,320d,2014,Automatic,3. Mid-High (500k-1M),Hatchback,Diesel,1446
+Mercedes-Benz,S350,2019,Automatic,4. Premium (>1M),Sedan,Petrol,1447
+Mercedes-Benz,GLE300,2021,Automatic,4. Premium (>1M),Sedan,Petrol,1448
+MG,MG5,2022,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1449
+BMW,745Le,2022,Automatic,4. Premium (>1M),Sedan,Petrol,1450
+Mercedes-Benz,S500,2017,Automatic,4. Premium (>1M),Pick-up,Petrol,1451
+Mercedes-Benz,E250,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1452
+Mazda,2,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1453
+Honda,CIVIC,2003,Automatic,1. Eco (<300k),Sedan,Petrol,1454
+Mercedes-Benz,E220,1993,Automatic,1. Eco (<300k),Sedan,Petrol,1455
+Mercedes-Benz,E300,2014,Automatic,1. Eco (<300k),Sedan,Hybrid,1456
+Mazda,2,2018,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1457
+Mazda,2,2019,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1458
+Mazda,BT-50,2023,Automatic,3. Mid-High (500k-1M),Pick-up,Petrol,1459
+Mazda,BT-50,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,Petrol,1460
+Toyota,ESTIMA,2019,Automatic,4. Premium (>1M),Van,Petrol,1461
+Toyota,VIOS,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1462
+Hyundai,Stargazer,2023,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1463
+Toyota,INNOVA,2019,Automatic,3. Mid-High (500k-1M),Van,Petrol,1464
+Ford,FOCUS,2018,Automatic,1. Eco (<300k),Hatchback,Petrol,1465
+Toyota,VELLFIRE,2026,Automatic,4. Premium (>1M),Van,Hybrid,1466
+Toyota,C-HR,2021,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1467
+Suzuki,XL7,2022,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1468
+Nissan,Terra,2019,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1469
+BMW,X3,2013,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1470
+Nissan,ALMERA,2022,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1471
+BMW,X3,2020,Automatic,4. Premium (>1M),SUV,Petrol,1472
+BMW,X5,2022,Automatic,4. Premium (>1M),SUV,Petrol,1473
+BMW,X7,2021,Automatic,4. Premium (>1M),SUV,Petrol,1474
+Toyota,ALPHARD,2021,Automatic,4. Premium (>1M),Sedan,Hybrid,1475
+Mercedes-Benz,C180,2015,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1476
+Volvo,XC40,2019,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1477
+Suzuki,SWIFT,2020,Automatic,1. Eco (<300k),Hatchback,Petrol,1478
+Mercedes-Benz,E250,2010,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1479
+Mercedes-Benz,E250,2011,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1480
+Ford,RANGER,2015,Automatic,1. Eco (<300k),Pick-up,Diesel,1481
+Porsche,CAYENNE,2020,Automatic,1. Eco (<300k),SUV,Hybrid,1482
+Mercedes-Benz,GLA250,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1483
+Mercedes-Benz,CLS250,2014,Automatic,3. Mid-High (500k-1M),Coupe,Diesel,1484
+Mitsubishi,PAJERO,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1485
+Mitsubishi,PAJERO,2013,Automatic,1. Eco (<300k),SUV,Petrol,1486
+Toyota,ALPHARD,2017,Automatic,4. Premium (>1M),Sedan,Hybrid,1487
+Ford,RANGER,2019,Automatic,1. Eco (<300k),Pick-up,Diesel,1488
+BMW,X1,2023,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1489
+Mercedes-Benz,C350,2017,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1490
+BMW,X3,2021,Automatic,4. Premium (>1M),SUV,EV,1491
+BMW,X1,2018,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1492
+Honda,FREED,2010,Automatic,1. Eco (<300k),Van,Petrol,1493
+Toyota,CAMRY,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1494
+Mazda,3,2015,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1495
+Mitsubishi,ATTRAGE,2021,Automatic,1. Eco (<300k),Sedan,Petrol,1496
+Mazda,CX-5,2017,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1497
+MG,ZS,2020,Automatic,1. Eco (<300k),SUV,EV,1498
+Mercedes-Benz,E300,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1499
+BMW,520d,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1500
+Honda,CR-V,2018,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1501
+Nissan,ALMERA,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1502
+Toyota,AVANZA,2020,Automatic,2. Mid-Low (300k-500k),Van,Petrol,1503
+Suzuki,SWIFT,2012,Automatic,1. Eco (<300k),Hatchback,Petrol,1504
+Mazda,2,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1505
+Mazda,CX-3,2021,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1506
+Mazda,2,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1507
+Nissan,MARCH,2019,Automatic,1. Eco (<300k),Hatchback,Petrol,1508
+Isuzu,D-MAX,2017,Automatic,1. Eco (<300k),Pick-up,Diesel,1509
+Hyundai,H-1,2022,Automatic,4. Premium (>1M),Van,Petrol,1510
+Mercedes-Benz,C200,2009,Automatic,1. Eco (<300k),Sedan,Petrol,1511
+Mercedes-Benz,C200,2015,Automatic,3. Mid-High (500k-1M),Van,Petrol,1512
+Hyundai,Staria,2024,Automatic,4. Premium (>1M),Van,Petrol,1513
+BMW,320i,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1514
+Suzuki,Ciaz,2020,Automatic,1. Eco (<300k),Sedan,Petrol,1515
+Mercedes-Benz,CLE300,2025,Automatic,4. Premium (>1M),Coupe,Petrol,1516
+Mitsubishi,TRITON,2006,Automatic,1. Eco (<300k),Pick-up,Diesel,1517
+Volkswagen,NEW,2011,Automatic,1. Eco (<300k),Coupe,Petrol,1518
+Subaru,XV,2018,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1519
+Mazda,3,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1520
+Mercedes-Benz,GLB200,2021,Automatic,4. Premium (>1M),Sedan,Petrol,1521
+BMW,X3,2015,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1522
+BMW,X1,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1523
+Volvo,XC90,2023,Automatic,4. Premium (>1M),SUV,Hybrid,1524
+Mercedes-Benz,GLB200,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1525
+Volvo,XC90,2024,Automatic,4. Premium (>1M),Sedan,Petrol,1526
+Honda,ACCORD,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1527
+Mercedes-Benz,C200,2012,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1528
+Mini,Paceman,2013,Automatic,3. Mid-High (500k-1M),Hatchback,Petrol,1529
+BMW,Series 2,2022,Automatic,3. Mid-High (500k-1M),Coupe,EV,1530
+Mitsubishi,Triton,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,Petrol,1531
+Mercedes-Benz,GLC-Class,2017,Automatic,3. Mid-High (500k-1M),SUV,EV,1532
+BMW,Series 3,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1533
+MG,VS HEV,2025,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1534
+Ford,Ranger,2020,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,1535
+Toyota,Yaris ATIV,2023,Automatic,2. Mid-Low (300k-500k),SUV,EV,1536
+BMW,Series 2,2017,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1537
+Volvo,V40,2014,Automatic,1. Eco (<300k),Hatchback,EV,1538
+BMW,X4,2018,Automatic,3. Mid-High (500k-1M),SUV,EV,1539
+Ford,Everest,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,1540
+BMW,Series 5,2012,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1541
+Mini,COUNTRYMAN,2015,Automatic,2. Mid-Low (300k-500k),SUV,EV,1542
+Mitsubishi,Pajero Sport,2022,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1543
+BMW,X5,2016,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,1544
+Mercedes-Benz,S-Class,2018,Automatic,4. Premium (>1M),Hatchback,EV,1545
+Mercedes-Benz,V-Class,2023,Automatic,4. Premium (>1M),Van,Diesel,1546
+Toyota,Vellfire,2015,Automatic,4. Premium (>1M),Van,Hybrid,1547
+Mercedes-Benz,C-Class,2023,Automatic,4. Premium (>1M),Hatchback,EV,1548
+Toyota,Yaris,2014,Automatic,1. Eco (<300k),Hatchback,Petrol,1549
+Nissan,Navara,2015,Manual,1. Eco (<300k),Pick-up,Diesel,1550
+Toyota,C-HR,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,Hybrid,1551
+Toyota,Hilux Vigo,2010,Automatic,1. Eco (<300k),Pick-up,Petrol,1552
+Toyota,Yaris,2008,Automatic,1. Eco (<300k),Hatchback,Petrol,1553
+Toyota,Avanza,2013,Automatic,1. Eco (<300k),Van,Petrol,1554
+Nissan,March,2019,Manual,1. Eco (<300k),Hatchback,Petrol,1555
+BMW,Series 1,2016,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1556
+Mini,COUNTRYMAN,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1557
+MG,MG3,2019,Automatic,1. Eco (<300k),Sedan,Petrol,1558
+Honda,City,2013,Automatic,1. Eco (<300k),Van,Petrol,1559
+Toyota,Veloz,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1560
+Toyota,Celica,1997,Manual,3. Mid-High (500k-1M),SUV,EV,1561
+BMW,Series 5,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1562
+Honda,Accord,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1563
+MG,MG3,2017,Automatic,1. Eco (<300k),Sedan,Petrol,1564
+Toyota,รุ่นอื่นๆ,1997,Manual,1. Eco (<300k),Van,Diesel,1565
+Honda,Civic,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1566
+Toyota,Vios,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1567
+Toyota,Granvia,2001,Automatic,1. Eco (<300k),Van,Petrol,1568
+Mitsubishi,Triton,2013,Manual,1. Eco (<300k),Sedan,Petrol,1569
+Toyota,Commuter,2019,Automatic,4. Premium (>1M),Van,EV,1570
+Isuzu,D-MAX,2023,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1571
+BMW,Series 5,2016,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1572
+Suzuki,Carry,2018,Manual,1. Eco (<300k),Sedan,Petrol,1573
+Toyota,Vios,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1574
+Mitsubishi,Pajero Sport,2019,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1575
+Ford,Everest,2021,Automatic,3. Mid-High (500k-1M),SUV,EV,1576
+Kia,Grand Carnival,2019,Automatic,3. Mid-High (500k-1M),Van,Petrol,1577
+Mitsubishi,Xpander Cross,2020,Automatic,2. Mid-Low (300k-500k),SUV,EV,1578
+Isuzu,D-MAX,2024,Manual,3. Mid-High (500k-1M),Pick-up,EV,1579
+Isuzu,MU-X,2018,Automatic,3. Mid-High (500k-1M),SUV,EV,1580
+Ford,Everest,2022,Automatic,4. Premium (>1M),SUV,EV,1581
+Toyota,Hilux Revo,2016,Manual,1. Eco (<300k),Pick-up,EV,1582
+Isuzu,D-MAX,2022,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1583
+Honda,City,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1584
+Honda,City,2014,Automatic,1. Eco (<300k),Hatchback,EV,1585
+Honda,,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1586
+Mazda,,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1587
+Toyota,,2019,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1588
+Toyota,Yaris,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1589
+Toyota,Commuter,2019,Automatic,3. Mid-High (500k-1M),Van,EV,1590
+Isuzu,D-MAX,2024,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1591
+Mitsubishi,Triton,2020,Manual,3. Mid-High (500k-1M),Pick-up,EV,1592
+Toyota,Alphard,2019,Automatic,4. Premium (>1M),Sedan,Petrol,1593
+Ford,Everest,2023,Automatic,4. Premium (>1M),SUV,EV,1594
+Suzuki,XL7,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1595
+Honda,Accord,2019,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1596
+Mazda,Mazda3,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1597
+BMW,X1,2019,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1598
+BMW,X3,2019,Automatic,4. Premium (>1M),SUV,EV,1599
+Toyota,Yaris ATIV,2024,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1600
+Toyota,Camry,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1601
+Toyota,Yaris ATIV,2018,Automatic,1. Eco (<300k),Hatchback,Petrol,1602
+Toyota,Yaris ATIV,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1603
+Toyota,Avanza,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1604
+Nissan,Cefiro,2006,Automatic,1. Eco (<300k),Sedan,Petrol,1605
+Toyota,Yaris ATIV,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1606
+Nissan,Teana,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1607
+Toyota,Fortuner,2017,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1608
+Chevrolet,Captiva,2012,Automatic,1. Eco (<300k),Sedan,Hybrid,1609
+Nissan,Teana,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1610
+Toyota,BB,2008,Automatic,1. Eco (<300k),Sedan,Petrol,1611
+Suzuki,Carry,2012,Manual,1. Eco (<300k),Pick-up,Petrol,1612
+Isuzu,D-MAX,2016,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1613
+Mazda,CX-5,2017,Manual,2. Mid-Low (300k-500k),SUV,Petrol,1614
+Honda,Accord,2000,Automatic,1. Eco (<300k),Sedan,Petrol,1615
+Ford,Ranger,2017,Manual,1. Eco (<300k),Pick-up,Diesel,1616
+Ford,Ranger,2017,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,1617
+Ford,Ecosport,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1618
+MG,ZS,2023,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1619
+Mazda,CX-5,2015,Automatic,1. Eco (<300k),SUV,Diesel,1620
+Isuzu,D-MAX,2020,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1621
+Nissan,Note,2018,Automatic,1. Eco (<300k),Sedan,Petrol,1622
+Toyota,Hilux Revo,2015,Manual,2. Mid-Low (300k-500k),Pick-up,EV,1623
+Ford,Everest,2018,Automatic,2. Mid-Low (300k-500k),SUV,EV,1624
+Mazda,CX-8,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1625
+Subaru,Forester,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1626
+Audi,Audi Q5,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1627
+BMW,Series 3,2013,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1628
+Mitsubishi,Pajero Sport,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,1629
+Nissan,March,2011,Automatic,1. Eco (<300k),Sedan,Petrol,1630
+Honda,Accord,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1631
+Mazda,Mazda 2,2023,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1632
+Ford,Ranger,2022,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,1633
+Toyota,Fortuner,2023,Automatic,4. Premium (>1M),SUV,EV,1634
+Honda,Accord,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1635
+Honda,Civic,2024,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1636
+Hyundai,H-1,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1637
+Volvo,V40,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1638
+Honda,Accord,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1639
+Mitsubishi,Pajero Sport,2024,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1640
+Honda,Civic,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,1641
+Ford,Everest,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,1642
+Toyota,Yaris Cross,2024,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1643
+Ford,Ranger,2024,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,1644
+Toyota,Hilux Revo,2024,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1645
+Toyota,Majesty,2020,Automatic,4. Premium (>1M),Van,EV,1646
+Isuzu,D-MAX,2014,Automatic,2. Mid-Low (300k-500k),Pick-up,Petrol,1647
+Honda,Civic,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1648
+Toyota,Sienta,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1649
+Toyota,Fortuner,2024,Automatic,4. Premium (>1M),SUV,Diesel,1650
+Suzuki,Swift,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1651
+Toyota,Fortuner,2017,Automatic,3. Mid-High (500k-1M),SUV,EV,1652
+Mitsubishi,Xpander,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,1653
+Toyota,Camry,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,1654
+Toyota,Alphard,2021,Automatic,4. Premium (>1M),Sedan,Petrol,1655
+Isuzu,MU-X,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,1656
+Mitsubishi,Xpander,2023,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1657
+BMW,Z4,2009,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1658
+Mitsubishi,Pajero Sport,2014,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1659
+Toyota,Fortuner,2023,Automatic,4. Premium (>1M),SUV,Diesel,1660
+Toyota,Fortuner,2016,Automatic,3. Mid-High (500k-1M),SUV,EV,1661
+Mitsubishi,Pajero Sport,2021,Automatic,3. Mid-High (500k-1M),SUV,EV,1662
+Toyota,Majesty,2019,Automatic,4. Premium (>1M),Van,EV,1663
+Mazda,Mazda 2,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1664
+Toyota,Fortuner,2016,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1665
+Ford,Ranger,2019,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1666
+Ford,Ranger,2019,Manual,1. Eco (<300k),Pick-up,Diesel,1667
+Toyota,Fortuner,2022,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1668
+Hyundai,H-1,2023,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1669
+Ford,Everest,2017,Automatic,2. Mid-Low (300k-500k),SUV,EV,1670
+Toyota,Corolla Cross,2020,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1671
+Mitsubishi,Xpander,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,1672
+Honda,Civic,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1673
+Isuzu,D-MAX,2019,Automatic,2. Mid-Low (300k-500k),Pick-up,Petrol,1674
+Honda,HR-V,2023,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1675
+Toyota,Fortuner,2013,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1676
+Mercedes-Benz,E-Class,2008,Automatic,1. Eco (<300k),Van,Petrol,1677
+Toyota,Fortuner,2025,Automatic,4. Premium (>1M),SUV,EV,1678
+Mazda,Mazda3,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1679
+Toyota,Fortuner,2021,Automatic,4. Premium (>1M),SUV,Diesel,1680
+Toyota,Fortuner,2020,Automatic,4. Premium (>1M),SUV,Diesel,1681
+Honda,BR-V,2023,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1682
+Mitsubishi,Pajero Sport,2013,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1683
+Isuzu,D-MAX,2014,Manual,2. Mid-Low (300k-500k),Pick-up,Petrol,1684
+Toyota,Hilux Vigo Champ,2015,Manual,2. Mid-Low (300k-500k),Pick-up,Petrol,1685
+Toyota,Vios,2011,Automatic,1. Eco (<300k),Sedan,Petrol,1686
+MG,HS,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1687
+Mazda,BT-50 Pro,2012,Automatic,1. Eco (<300k),Pick-up,Petrol,1688
+Ford,Everest,2018,Automatic,3. Mid-High (500k-1M),SUV,EV,1689
+Ford,Ranger,2019,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,1690
+Toyota,Commuter,2020,Automatic,4. Premium (>1M),Sedan,Petrol,1691
+Nissan,NP300-NAVARA,2019,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,1692
+Toyota,Hilux Revo,2022,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1693
+Toyota,Camry,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1694
+Toyota,Hilux Revo,2021,Manual,2. Mid-Low (300k-500k),Pick-up,EV,1695
+ยี่ห้ออื่นๆ,รุ่นอื่นๆ,2024,Automatic,3. Mid-High (500k-1M),Sedan,EV,1696
+Toyota,Sienta,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1697
+Isuzu,D-MAX,2021,Manual,3. Mid-High (500k-1M),Pick-up,Diesel,1698
+Ford,Ranger,2021,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1699
+Mazda,CX-3,2018,Automatic,2. Mid-Low (300k-500k),SUV,EV,1700
+Honda,Civic,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1701
+Toyota,Vios,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1702
+Honda,CR-V,2018,Automatic,3. Mid-High (500k-1M),Van,Diesel,1703
+Toyota,Hilux Revo,2024,Manual,2. Mid-Low (300k-500k),Pick-up,EV,1704
+Toyota,Yaris ATIV,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1705
+Toyota,Yaris ATIV,2023,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1706
+Toyota,Hilux Revo,2021,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1707
+BMW,X3,2011,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1708
+Subaru,XV,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1709
+Mercedes-Benz,C-Class,2012,Automatic,2. Mid-Low (300k-500k),Van,Diesel,1710
+Isuzu,D-MAX,2021,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1711
+Mazda,CX-3,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1712
+Mazda,Mazda3,2012,Automatic,1. Eco (<300k),Hatchback,Petrol,1713
+Toyota,Vios,2008,Automatic,1. Eco (<300k),Sedan,Petrol,1714
+Nissan,X-Trail,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1715
+Mazda,CX-30,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1716
+Mini,Hatch Cooper,2011,Automatic,2. Mid-Low (300k-500k),Coupe,Petrol,1717
+Volvo,V60,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1718
+BMW,Series 5,2013,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1719
+Honda,Accord,2019,Automatic,3. Mid-High (500k-1M),Van,Petrol,1720
+Mercedes-Benz,C-Class,2010,Automatic,1. Eco (<300k),Van,Petrol,1721
+Mercedes-Benz,CLA-Class,2018,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1722
+Audi,Audi Q3,2017,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1723
+Mazda,Mazda 2,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1724
+Mercedes-Benz,E-Class,2012,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1725
+Honda,Jazz,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1726
+Mercedes-Benz,C-Class,2012,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1727
+Mercedes-Benz,E-Class,2012,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1728
+Mitsubishi,Pajero Sport,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1729
+Mercedes-Benz,CLA-Class,2016,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1730
+Jeep,Grand Cherokee,2013,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1731
+BMW,Series 3,2009,Automatic,1. Eco (<300k),Sedan,Diesel,1732
+Volkswagen,Caravelle,2017,Automatic,3. Mid-High (500k-1M),Van,Diesel,1733
+Suzuki,Swift,2019,Automatic,1. Eco (<300k),Hatchback,Petrol,1734
+Toyota,Camry,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1735
+Honda,Civic,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1736
+Ford,Ranger,2018,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1737
+Mercedes-Benz,C-Class,2021,Automatic,4. Premium (>1M),Van,Diesel,1738
+Toyota,Sienta,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1739
+Ford,Ranger,2016,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1740
+Toyota,Corolla Cross,2021,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1741
+Mercedes-Benz,E-Class,2022,Automatic,4. Premium (>1M),SUV,EV,1742
+Isuzu,MU-X,2016,Automatic,2. Mid-Low (300k-500k),SUV,EV,1743
+Mercedes-Benz,GLC-Class,2018,Automatic,4. Premium (>1M),SUV,EV,1744
+BMW,,2016,Automatic,3. Mid-High (500k-1M),Sedan,EV,1745
+Nissan,March,2016,Automatic,1. Eco (<300k),Sedan,Petrol,1746
+Isuzu,MU-X,2015,Automatic,2. Mid-Low (300k-500k),SUV,EV,1747
+Toyota,Fortuner,2021,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1748
+Mercedes-Benz,GLA-Class,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,1749
+Ford,Everest,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,1750
+Mitsubishi,Xpander,2024,Automatic,3. Mid-High (500k-1M),SUV,EV,1751
+Toyota,Corolla Cross,2025,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1752
+Mazda,Mazda 2,2024,Automatic,2. Mid-Low (300k-500k),SUV,EV,1753
+Mercedes-Benz,C-Class,2021,Automatic,4. Premium (>1M),SUV,EV,1754
+Toyota,Yaris,2017,Automatic,1. Eco (<300k),Hatchback,EV,1755
+Toyota,Commuter,2019,Automatic,4. Premium (>1M),Sedan,Petrol,1756
+Toyota,Corolla Cross,2022,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1757
+Nissan,March,2013,Automatic,1. Eco (<300k),Sedan,EV,1758
+Kia,Rio,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1759
+Mazda,CX-5,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,1760
+Honda,HR-V,2015,Automatic,2. Mid-Low (300k-500k),SUV,EV,1761
+Toyota,Vios,2015,Automatic,1. Eco (<300k),Sedan,EV,1762
+Mitsubishi,Attrage,2018,Automatic,1. Eco (<300k),Sedan,EV,1763
+Mercedes-Benz,E-Class,2006,Automatic,1. Eco (<300k),Van,Petrol,1764
+Nissan,Almera,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1765
+Honda,Accord,2010,Automatic,1. Eco (<300k),Sedan,EV,1766
+Isuzu,D-MAX,2016,Manual,1. Eco (<300k),Pick-up,EV,1767
+Mitsubishi,Pajero,1995,Automatic,1. Eco (<300k),SUV,Diesel,1768
+Toyota,Camry,2012,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1769
+BMW,Series 1,2016,Automatic,3. Mid-High (500k-1M),Sedan,EV,1770
+Honda,Civic,2011,Automatic,1. Eco (<300k),Sedan,EV,1771
+Honda,HR-V,2014,Automatic,2. Mid-Low (300k-500k),SUV,EV,1772
+Honda,Freed,2012,Automatic,1. Eco (<300k),Sedan,EV,1773
+Ford,Ranger,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,1774
+Toyota,Altis,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1775
+Toyota,Hilux Vigo,2008,Manual,1. Eco (<300k),Pick-up,Diesel,1776
+Nissan,Sylphy,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1777
+Land Rover,Discovery,2016,Automatic,4. Premium (>1M),Hatchback,EV,1778
+Honda,Accord,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1779
+Toyota,Alphard,2013,Automatic,3. Mid-High (500k-1M),Van,Hybrid,1780
+Mini,COUNTRYMAN,2014,Automatic,2. Mid-Low (300k-500k),SUV,EV,1781
+Toyota,Altis,2011,Automatic,1. Eco (<300k),Sedan,Petrol,1782
+Honda,CR-V,2013,Automatic,2. Mid-Low (300k-500k),SUV,EV,1783
+Toyota,Fortuner,2010,Automatic,2. Mid-Low (300k-500k),SUV,EV,1784
+Mercedes-Benz,GLA-Class,2023,Automatic,4. Premium (>1M),SUV,EV,1785
+Toyota,Fortuner,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,1786
+Mazda,Mazda 2,2017,Automatic,1. Eco (<300k),Hatchback,EV,1787
+GWM,Haval Jolion,2026,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1788
+Honda,Accord,2023,Automatic,3. Mid-High (500k-1M),Van,Hybrid,1789
+Honda,Civic,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,1790
+Honda,Civic,2025,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1791
+Honda,Civic,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,1792
+Honda,CR-V,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,1793
+Honda,Jazz,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1794
+Honda,BR-V,2020,Automatic,2. Mid-Low (300k-500k),SUV,EV,1795
+Mazda,Mazda 2,2018,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1796
+Honda,CR-V,2014,Automatic,2. Mid-Low (300k-500k),SUV,EV,1797
+Mazda,CX-5,2018,Automatic,2. Mid-Low (300k-500k),SUV,EV,1798
+Mercedes-Benz,A-Class,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,1799
+Toyota,Fortuner,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,1800
+Honda,BR-V,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1801
+Honda,City,2021,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1802
+Mazda,Mazda 2,2019,Automatic,1. Eco (<300k),Sedan,EV,1803
+Ford,Ranger,2021,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1804
+GWM,ORA Good Cat,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1805
+Toyota,Altis,2015,Automatic,1. Eco (<300k),Sedan,EV,1806
+MG,GS,2021,Automatic,1. Eco (<300k),Sedan,EV,1807
+Mitsubishi,Xpander,2020,Automatic,2. Mid-Low (300k-500k),SUV,EV,1808
+Suzuki,Ertiga,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1809
+Toyota,Camry,2018,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1810
+Toyota,Camry,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1811
+Honda,CR-V,2016,Automatic,2. Mid-Low (300k-500k),SUV,EV,1812
+Honda,BR-V,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1813
+Toyota,Harrier,2014,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1814
+BMW,X5,2016,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1815
+BMW,X1,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1816
+Mini,COUNTRYMAN,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1817
+BMW,Series 5,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1818
+BMW,X3,2021,Automatic,4. Premium (>1M),SUV,Diesel,1819
+BMW,Series 5,2018,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1820
+Honda,Civic,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1821
+Mini,COUNTRYMAN,2018,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1822
+BMW,Series 5,2019,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1823
+Toyota,C-HR,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1824
+BMW,Series 5,2020,Automatic,4. Premium (>1M),Sedan,Diesel,1825
+BMW,Series 3,2022,Automatic,4. Premium (>1M),Sedan,EV,1826
+Toyota,Fortuner,2014,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,1827
+BMW,X1,2020,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1828
+Mitsubishi,Xpander Cross,2021,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1829
+Honda,City,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1830
+Mini,Hatch Cooper,2016,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1831
+Mazda,CX-5,2019,Manual,3. Mid-High (500k-1M),SUV,Petrol,1832
+BMW,Series 2,2021,Automatic,3. Mid-High (500k-1M),Coupe,Petrol,1833
+Honda,BR-V,2021,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1834
+Honda,Stepwagon,2022,Automatic,4. Premium (>1M),Van,Hybrid,1835
+Toyota,Yaris ATIV,2019,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1836
+Mercedes-Benz,E-Class,2017,Automatic,4. Premium (>1M),Sedan,Diesel,1837
+Honda,HR-V,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1838
+Mini,COUNTRYMAN,2017,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1839
+Mini,COUNTRYMAN,2023,Automatic,4. Premium (>1M),Sedan,Petrol,1840
+BMW,Series 3,2016,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1841
+BMW,Series 3,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1842
+Mercedes-Benz,C-Class,2019,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1843
+Isuzu,MU-X,2019,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1844
+Mercedes-Benz,C-Class,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1845
+BMW,Z4,2010,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1846
+BMW,Series 3,2016,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1847
+Nissan,Fairlady-Z,2023,Automatic,4. Premium (>1M),Sedan,Petrol,1848
+BMW,Series 3,2020,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1849
+Isuzu,MU-7,2012,Manual,1. Eco (<300k),Sedan,Petrol,1850
+Isuzu,D-MAX,2004,Manual,1. Eco (<300k),Pick-up,Diesel,1851
+Mitsubishi,Triton,2017,Manual,1. Eco (<300k),Sedan,Petrol,1852
+Suzuki,Ertiga,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1853
+Mazda,Mazda3,2009,Automatic,1. Eco (<300k),Sedan,Petrol,1854
+Mazda,BT-50 Pro,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1855
+Mitsubishi,Space Wagon,2004,Automatic,1. Eco (<300k),Van,Petrol,1856
+Toyota,Sienta,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1857
+Mazda,Mazda 2,2013,Automatic,1. Eco (<300k),Sedan,Petrol,1858
+Mitsubishi,Mirage,2012,Automatic,1. Eco (<300k),Sedan,Petrol,1859
+Toyota,Wish,2008,Automatic,1. Eco (<300k),Sedan,Petrol,1860
+Toyota,Altis,2010,Automatic,1. Eco (<300k),Sedan,Petrol,1861
+Toyota,Fortuner,2006,Automatic,1. Eco (<300k),SUV,Diesel,1862
+Toyota,Altis,2015,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1863
+Toyota,Prius,2012,Automatic,1. Eco (<300k),Sedan,Hybrid,1864
+Honda,Brio,2014,Automatic,1. Eco (<300k),Sedan,Petrol,1865
+Mitsubishi,Triton,2024,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,1866
+Mazda,Mazda 2,2016,Automatic,1. Eco (<300k),Sedan,Petrol,1867
+Nissan,NP300-NAVARA,2016,Automatic,1. Eco (<300k),Pick-up,Diesel,1868
+Nissan,NP300-NAVARA,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,1869
+Toyota,Hilux Vigo Champ,2014,Manual,1. Eco (<300k),Pick-up,Petrol,1870
+Mitsubishi,Triton,2022,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,1871
+Toyota,Commuter,2023,Automatic,4. Premium (>1M),Sedan,Diesel,1872
+BMW,X1,2020,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,1873
+Mitsubishi,X-FORCE,2025,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1874
+Ford,Everest,2024,Automatic,4. Premium (>1M),SUV,EV,1875
+Honda,HR-V,2022,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,1876
+Toyota,Corolla Cross,2023,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1877
+Honda,Civic,2014,Automatic,1. Eco (<300k),Sedan,EV,1878
+Mitsubishi,Pajero Sport,2015,Automatic,2. Mid-Low (300k-500k),SUV,EV,1879
+Kia,EV5,2025,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1880
+Honda,HR-V,2024,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,1881
+Toyota,Altis,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1882
+Toyota,Yaris,2018,Automatic,1. Eco (<300k),Hatchback,EV,1883
+Toyota,Hilux Revo,2025,Manual,3. Mid-High (500k-1M),Pick-up,EV,1884
+Toyota,Yaris ATIV,2020,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1885
+Honda,CR-V,2014,Automatic,1. Eco (<300k),Sedan,EV,1886
+BYD,Dolphin,2024,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1887
+Honda,HR-V,2017,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1888
+Subaru,XV,2013,Automatic,1. Eco (<300k),Sedan,EV,1889
+Honda,City,2024,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1890
+Toyota,Avanza,2020,Automatic,2. Mid-Low (300k-500k),Van,EV,1891
+GWM,TANK 300,2024,Automatic,3. Mid-High (500k-1M),Sedan,EV,1892
+BMW,Series 5,2015,Automatic,3. Mid-High (500k-1M),Sedan,EV,1893
+Nissan,Kicks,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,1894
+Mazda,Mazda 2,2024,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1895
+Ford,Ranger,2023,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1896
+Mitsubishi,Xpander,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1897
+Toyota,Innova,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Diesel,1898
+Toyota,C-HR,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1899
+Toyota,Hilux Travo,2026,Automatic,4. Premium (>1M),Pick-up,EV,1900
+Toyota,C-HR,2019,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1901
+Toyota,Yaris Cross,2023,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1902
+Tesla,Model-3,2020,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1903
+Toyota,Yaris ATIV,2023,Automatic,3. Mid-High (500k-1M),Hatchback,Petrol,1904
+Toyota,Alphard,2012,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1905
+Toyota,Yaris,2013,Automatic,1. Eco (<300k),Hatchback,Petrol,1906
+Subaru,Forester,2019,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1907
+Nissan,Terra,2018,Automatic,3. Mid-High (500k-1M),SUV,Diesel,1908
+Ford,Ranger,2025,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1909
+Toyota,Hilux Revo,2025,Automatic,4. Premium (>1M),Pick-up,EV,1910
+Hyundai,Staria,2023,Automatic,3. Mid-High (500k-1M),Sedan,EV,1911
+Ford,Everest,2017,Automatic,3. Mid-High (500k-1M),SUV,EV,1912
+Toyota,Vios,2013,Automatic,1. Eco (<300k),Sedan,EV,1913
+Toyota,Hilux Revo,2023,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1914
+MG,ZS,2022,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1915
+Honda,Freed,2014,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1916
+Toyota,Fortuner,2022,Automatic,4. Premium (>1M),SUV,EV,1917
+Toyota,Camry,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1918
+Toyota,Altis,2014,Automatic,1. Eco (<300k),Sedan,EV,1919
+Mazda,CX-30,2024,Automatic,3. Mid-High (500k-1M),Sedan,EV,1920
+Hyundai,H-1,2018,Automatic,3. Mid-High (500k-1M),Sedan,EV,1921
+Nissan,X-Trail,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1922
+Honda,CR-V,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,1923
+Honda,Civic,2022,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1924
+Mitsubishi,Xpander,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1925
+Toyota,Corolla Cross,2024,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1926
+Honda,Civic,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,1927
+Honda,Civic,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1928
+Toyota,Yaris ATIV,2023,Automatic,3. Mid-High (500k-1M),Hatchback,EV,1929
+Mitsubishi,Pajero Sport,2016,Automatic,3. Mid-High (500k-1M),SUV,EV,1930
+Honda,Accord,2016,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1931
+Toyota,Yaris ATIV,2020,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,1932
+Nissan,Terra,2018,Manual,3. Mid-High (500k-1M),SUV,Diesel,1933
+Mitsubishi,Triton,2023,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,1934
+ยี่ห้ออื่นๆ,รุ่นอื่นๆ,2022,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,1935
+Honda,Accord,2017,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1936
+Toyota,Camry,2008,Automatic,1. Eco (<300k),Sedan,Petrol,1937
+Ford,Ranger,2022,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1938
+Toyota,C-HR,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1939
+Ford,Ranger,2024,Automatic,4. Premium (>1M),Pick-up,EV,1940
+Subaru,Forester,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1941
+Honda,City,2023,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1942
+Nissan,X-Trail,2019,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1943
+Isuzu,MU-X,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,1944
+Toyota,Fortuner,2018,Automatic,3. Mid-High (500k-1M),SUV,EV,1945
+Honda,CR-V,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,1946
+Mazda,Mazda3,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1947
+Toyota,Yaris ATIV,2024,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1948
+Honda,CR-V,2013,Automatic,1. Eco (<300k),SUV,EV,1949
+Honda,HR-V,2023,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,1950
+Toyota,Hilux Revo,2022,Manual,3. Mid-High (500k-1M),Pick-up,EV,1951
+Honda,Freed,2015,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1952
+Honda,CR-V,2015,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1953
+Nissan,Kicks,2023,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1954
+Honda,CR-V,2013,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1955
+Honda,City,2024,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,1956
+Honda,HR-V,2024,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1957
+Honda,City,2021,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1958
+Mini,COUNTRYMAN,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,1959
+Mazda,Mazda 2,2019,Automatic,1. Eco (<300k),Sedan,Petrol,1960
+Toyota,Alphard,2012,Automatic,3. Mid-High (500k-1M),Van,Petrol,1961
+Hyundai,Grand Starex,2020,Automatic,3. Mid-High (500k-1M),Van,Diesel,1962
+Mitsubishi,Pajero Sport,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,1963
+Mazda,Mazda3,2019,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1964
+Mazda,CX-3,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1965
+Honda,CR-V,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,1966
+MG,HS,2021,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1967
+Isuzu,MU-X,2014,Automatic,2. Mid-Low (300k-500k),SUV,EV,1968
+Honda,Accord,2021,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1969
+Honda,HR-V,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1970
+Toyota,Sienta,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1971
+Honda,Jazz,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,1972
+Kia,Grand Carnival,2017,Automatic,3. Mid-High (500k-1M),Sedan,EV,1973
+Honda,City,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,1974
+Toyota,Fortuner,2024,Automatic,4. Premium (>1M),SUV,EV,1975
+Ford,Ranger,2024,Automatic,3. Mid-High (500k-1M),Pick-up,EV,1976
+Honda,HR-V,2015,Automatic,2. Mid-Low (300k-500k),SUV,Hybrid,1977
+Nissan,Juke,2015,Automatic,1. Eco (<300k),Sedan,EV,1978
+Toyota,Sienta,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1979
+Mitsubishi,Xpander,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1980
+Toyota,Majesty,2019,Automatic,4. Premium (>1M),Van,Diesel,1981
+Subaru,Forester,2019,Automatic,3. Mid-High (500k-1M),SUV,Petrol,1982
+Hyundai,Staria,2022,Automatic,4. Premium (>1M),Sedan,Diesel,1983
+Mitsubishi,Xpander,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1984
+Mazda,CX-3,2021,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1985
+Honda,Jazz,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,1986
+Mitsubishi,Xpander Cross,2020,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1987
+Toyota,Hilux Revo,2024,Manual,3. Mid-High (500k-1M),Pick-up,EV,1988
+Toyota,Hilux Revo,2021,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,1989
+Toyota,Hilux Revo,2023,Manual,3. Mid-High (500k-1M),Pick-up,EV,1990
+Ford,Ranger,2021,Automatic,2. Mid-Low (300k-500k),Pick-up,Diesel,1991
+Ford,Ranger,2021,Automatic,4. Premium (>1M),Pick-up,Diesel,1992
+Ford,Ranger,2020,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,1993
+Audi,Audi Q5,2011,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,1994
+Toyota,Vios,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,1995
+Toyota,Camry,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1996
+Suzuki,Grand Vitara,2012,Automatic,1. Eco (<300k),SUV,Petrol,1997
+Mercedes-Benz,Sprinter,2021,Automatic,4. Premium (>1M),SUV,Diesel,1998
+Toyota,Camry,2019,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,1999
+Toyota,Majesty,2020,Automatic,4. Premium (>1M),Sedan,Petrol,2000
+Toyota,Hilux Revo,2019,Automatic,3. Mid-High (500k-1M),Pick-up,EV,2001
+Honda,BR-V,2019,Automatic,2. Mid-Low (300k-500k),SUV,EV,2002
+Honda,CR-V,2024,Automatic,4. Premium (>1M),SUV,EV,2003
+Toyota,Camry,2021,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2004
+Honda,CR-V,2017,Automatic,3. Mid-High (500k-1M),SUV,EV,2005
+Honda,BR-V,2019,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2006
+Ford,Everest,2016,Automatic,2. Mid-Low (300k-500k),SUV,EV,2007
+Toyota,Camry,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2008
+Toyota,Fortuner,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,2009
+Mazda,CX-5,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,2010
+Toyota,Camry,2022,Automatic,4. Premium (>1M),Sedan,EV,2011
+Toyota,Innova,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,2012
+Honda,Civic,2023,Automatic,3. Mid-High (500k-1M),Sedan,EV,2013
+Toyota,Corolla Cross,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,2014
+Mazda,CX-5,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2015
+Honda,Civic,2023,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2016
+Toyota,Altis,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2017
+Toyota,Innova,2023,Automatic,4. Premium (>1M),Sedan,Hybrid,2018
+Mercedes-Benz,E-Class,2019,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2019
+Toyota,C-HR,2019,Automatic,2. Mid-Low (300k-500k),SUV,Hybrid,2020
+BMW,Series 5,2016,Automatic,3. Mid-High (500k-1M),Sedan,EV,2021
+BMW,Series 5,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2022
+Mercedes-Benz,GLC-Class,2016,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2023
+Toyota,Innova,2021,Automatic,3. Mid-High (500k-1M),SUV,EV,2024
+Mercedes-Benz,GLA-Class,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2025
+Mazda,Mazda3,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,2026
+Mitsubishi,Xpander,2024,Automatic,3. Mid-High (500k-1M),Van,Hybrid,2027
+BMW,Series 5,2017,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2028
+Mercedes-Benz,S-Class,2019,Automatic,4. Premium (>1M),Sedan,Hybrid,2029
+Mitsubishi,Triton,2015,Manual,1. Eco (<300k),Pick-up,Diesel,2030
+Toyota,Vellfire,2020,Automatic,4. Premium (>1M),Van,EV,2031
+Toyota,Vellfire,2019,Automatic,4. Premium (>1M),Van,Hybrid,2032
+Toyota,Alphard,2021,Automatic,4. Premium (>1M),Van,EV,2033
+Toyota,Alphard,2020,Automatic,4. Premium (>1M),Van,EV,2034
+Toyota,Hilux Revo,2025,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,2035
+Mitsubishi,Triton,2019,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2036
+Toyota,Vellfire,2021,Automatic,4. Premium (>1M),Hatchback,Hybrid,2037
+Toyota,Camry,2022,Automatic,4. Premium (>1M),SUV,Hybrid,2038
+Honda,Civic,2018,Automatic,3. Mid-High (500k-1M),Hatchback,EV,2039
+Toyota,Alphard,2019,Automatic,4. Premium (>1M),Van,Hybrid,2040
+Honda,Accord,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2041
+Isuzu,MU-X,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2042
+Isuzu,MU-X,2025,Automatic,3. Mid-High (500k-1M),SUV,EV,2043
+Isuzu,MU-X,2017,Automatic,3. Mid-High (500k-1M),SUV,EV,2044
+Toyota,Camry,2022,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2045
+Isuzu,D-MAX,2018,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2046
+Mazda,Mazda 2,2020,Automatic,1. Eco (<300k),Sedan,Petrol,2047
+Honda,Accord,2021,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2048
+Ford,Ranger,2026,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,2049
+MG,ZS,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2050
+Ford,Everest,2025,Automatic,4. Premium (>1M),SUV,EV,2051
+Nissan,Note,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2052
+Toyota,Yaris ATIV,2024,Automatic,3. Mid-High (500k-1M),Hatchback,Petrol,2053
+Toyota,รุ่นอื่นๆ,2025,Automatic,4. Premium (>1M),Pick-up,Diesel,2054
+Toyota,Hilux Revo,2023,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2055
+Mazda,Mazda 2,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2056
+Mazda,Mazda 2,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2057
+Honda,BR-V,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2058
+Toyota,Fortuner,2025,Automatic,4. Premium (>1M),SUV,Diesel,2059
+Toyota,Avanza,2021,Automatic,2. Mid-Low (300k-500k),Van,Petrol,2060
+Toyota,Corolla Cross,2025,Automatic,4. Premium (>1M),SUV,Hybrid,2061
+Toyota,Hilux Revo,2022,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2062
+Toyota,Hilux Revo,2017,Automatic,3. Mid-High (500k-1M),Pick-up,EV,2063
+Toyota,Hilux Revo,2021,Manual,3. Mid-High (500k-1M),Pick-up,EV,2064
+Toyota,Fortuner,2022,Automatic,4. Premium (>1M),SUV,Diesel,2065
+Toyota,Hilux Revo,2018,Manual,3. Mid-High (500k-1M),Pick-up,EV,2066
+Ford,Ranger,2025,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,2067
+Toyota,Vios,2015,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2068
+Toyota,Hilux Revo,2018,Automatic,3. Mid-High (500k-1M),Pick-up,EV,2069
+Toyota,Vios,2011,Manual,1. Eco (<300k),Sedan,Petrol,2070
+Nissan,Note,2020,Automatic,1. Eco (<300k),Hatchback,Petrol,2071
+Toyota,Vellfire,2013,Automatic,3. Mid-High (500k-1M),Van,Petrol,2072
+Volvo,S90,2021,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2073
+Toyota,Altis,2012,Automatic,1. Eco (<300k),Sedan,Petrol,2074
+Mitsubishi,Pajero Sport,2026,Automatic,3. Mid-High (500k-1M),SUV,EV,2075
+Nissan,March,2017,Manual,1. Eco (<300k),Sedan,Petrol,2076
+Nissan,Navara,2014,Manual,1. Eco (<300k),Pick-up,Diesel,2077
+Toyota,Fortuner,2020,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2078
+Mazda,รุ่นอื่นๆ,2007,Manual,1. Eco (<300k),Sedan,Petrol,2079
+Volvo,XC60,2019,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2080
+Kia,Carnival,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,2081
+Toyota,Altis,2015,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2082
+BMW,X1,2012,Automatic,2. Mid-Low (300k-500k),SUV,EV,2083
+Nissan,Almera,2013,Automatic,1. Eco (<300k),Sedan,Petrol,2084
+Toyota,Altis,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2085
+Subaru,XV,2015,Automatic,1. Eco (<300k),SUV,EV,2086
+Mitsubishi,Pajero Sport,2015,Automatic,3. Mid-High (500k-1M),SUV,EV,2087
+BMW,X1,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2088
+Honda,Accord,2014,Automatic,2. Mid-Low (300k-500k),Van,EV,2089
+BMW,Series 3,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2090
+BMW,Series 5,2021,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2091
+Honda,Jazz,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2092
+Honda,Civic,2012,Automatic,1. Eco (<300k),Sedan,EV,2093
+Mazda,CX-3,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2094
+Toyota,Yaris ATIV,2023,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2095
+Nissan,Juke,2014,Automatic,1. Eco (<300k),Sedan,EV,2096
+Toyota,Hilux Revo,2015,Manual,1. Eco (<300k),Pick-up,EV,2097
+Toyota,Camry,2007,Automatic,1. Eco (<300k),Sedan,EV,2098
+Honda,Accord,2011,Automatic,1. Eco (<300k),Sedan,Petrol,2099
+Honda,Civic,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2100
+Honda,Jazz,2018,Automatic,1. Eco (<300k),Sedan,EV,2101
+Honda,Accord,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2102
+Toyota,Camry,2025,Automatic,4. Premium (>1M),Hatchback,Hybrid,2103
+Honda,Civic,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2104
+Subaru,Forester,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2105
+BMW,Z4,2014,Automatic,4. Premium (>1M),Sedan,Petrol,2106
+Toyota,Yaris ATIV,2025,Automatic,3. Mid-High (500k-1M),SUV,EV,2107
+Honda,Civic,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2108
+Mercedes-Benz,C-Class,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,2109
+Honda,Accord,2014,Automatic,2. Mid-Low (300k-500k),SUV,EV,2110
+Honda,Jazz,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2111
+Toyota,Hiace,2019,Manual,3. Mid-High (500k-1M),Van,EV,2112
+Suzuki,Swift,2020,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,2113
+Toyota,Yaris ATIV,2025,Automatic,2. Mid-Low (300k-500k),Hatchback,Petrol,2114
+Honda,HR-V,2014,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,2115
+Toyota,Altis,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2116
+Mercedes-Benz,GLA-Class,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,2117
+Toyota,Altis,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2118
+Toyota,Commuter,2018,Manual,3. Mid-High (500k-1M),Sedan,Petrol,2119
+Toyota,Altis,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2120
+Toyota,Veloz,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,2121
+Honda,HR-V,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,2122
+Volvo,XC90,2020,Automatic,4. Premium (>1M),SUV,Hybrid,2123
+Toyota,Corolla Cross,2020,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2124
+Mitsubishi,Xpander Cross,2024,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2125
+Toyota,Yaris ATIV,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2126
+Honda,Civic,2025,Automatic,4. Premium (>1M),Sedan,Hybrid,2127
+Toyota,Yaris ATIV,2017,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2128
+Toyota,Majesty,2021,Automatic,4. Premium (>1M),Sedan,Petrol,2129
+Mitsubishi,Pajero Sport,2021,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2130
+Honda,Accord,2018,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2131
+Honda,Civic,2022,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2132
+Toyota,Yaris ATIV,2025,Automatic,3. Mid-High (500k-1M),Hatchback,Petrol,2133
+Toyota,Voxy,2022,Automatic,4. Premium (>1M),Sedan,Hybrid,2134
+Honda,Accord,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2135
+Mercedes-Benz,GLC-Class,2018,Automatic,4. Premium (>1M),SUV,Petrol,2136
+Honda,Accord,2023,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2137
+Toyota,Camry,2019,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2138
+Honda,City,2025,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,2139
+Mazda,Mazda 2,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2140
+Toyota,Camry,2024,Automatic,4. Premium (>1M),Sedan,Hybrid,2141
+Nissan,Kicks,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2142
+Toyota,C-HR,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2143
+Toyota,Alphard,2021,Automatic,4. Premium (>1M),Sedan,Hybrid,2144
+BMW,X3,2021,Automatic,4. Premium (>1M),SUV,Hybrid,2145
+BMW,Series 5,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2146
+Isuzu,D-MAX,2011,Manual,1. Eco (<300k),Pick-up,Diesel,2147
+Toyota,Hilux Revo,2017,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2148
+Honda,Civic,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2149
+Isuzu,D-MAX,2017,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2150
+Toyota,Sport Rider,2002,Automatic,1. Eco (<300k),Sedan,EV,2151
+Toyota,Yaris ATIV,2018,Automatic,1. Eco (<300k),Hatchback,EV,2152
+Isuzu,Dragon Power,2001,Manual,1. Eco (<300k),Pick-up,EV,2153
+Ford,Ranger,2014,Automatic,1. Eco (<300k),Pick-up,EV,2154
+Toyota,Hilux Revo,2018,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,2155
+Isuzu,D-MAX,2015,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2156
+Toyota,Yaris,2014,Automatic,1. Eco (<300k),Hatchback,EV,2157
+Mercedes-Benz,C-Class,2020,Automatic,4. Premium (>1M),Sedan,Diesel,2158
+BMW,Series 4,2015,Automatic,4. Premium (>1M),Pick-up,Petrol,2159
+Honda,Mobilio,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2160
+Toyota,Alphard,2020,Automatic,4. Premium (>1M),Hatchback,Hybrid,2161
+Mercedes-Benz,E-Class,2012,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2162
+Honda,Civic,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2163
+Mercedes-Benz,E-Class,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2164
+Mazda,Mazda 2,2017,Automatic,1. Eco (<300k),Sedan,Diesel,2165
+Chevrolet,Aveo,2009,Manual,1. Eco (<300k),Pick-up,Hybrid,2166
+Mazda,Mazda 2,2023,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2167
+Mazda,Mazda3,2016,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2168
+Honda,Accord,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,2169
+Mazda,Mazda3,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2170
+Honda,BR-V,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2171
+Honda,Accord,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2172
+Mazda,Mazda 2,2021,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2173
+Mazda,Mazda3,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,2174
+Mazda,Mazda3,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,2175
+Toyota,Veloz,2023,Automatic,3. Mid-High (500k-1M),Sedan,EV,2176
+Mazda,Mazda 2,2020,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2177
+Honda,Accord,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,2178
+Mazda,CX-8,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,2179
+Mazda,CX-30,2022,Automatic,3. Mid-High (500k-1M),Sedan,EV,2180
+Mazda,CX-30,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,2181
+Mazda,CX-30,2020,Automatic,3. Mid-High (500k-1M),Sedan,EV,2182
+MG,MG5,2022,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2183
+Toyota,C-HR,2018,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2184
+Isuzu,MU-X,2021,Automatic,3. Mid-High (500k-1M),SUV,EV,2185
+Mercedes-Benz,GLA-Class,2018,Automatic,3. Mid-High (500k-1M),Sedan,EV,2186
+Mazda,CX-30,2023,Automatic,3. Mid-High (500k-1M),Sedan,EV,2187
+Mitsubishi,Xpander,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2188
+Toyota,Yaris,2024,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2189
+Nissan,Kicks,2023,Automatic,2. Mid-Low (300k-500k),SUV,Hybrid,2190
+Nissan,X-Trail,2019,Automatic,2. Mid-Low (300k-500k),SUV,Hybrid,2191
+Nissan,X-Trail,2019,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2192
+Nissan,NP300-NAVARA,2020,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,2193
+Honda,Jazz,2008,Automatic,1. Eco (<300k),Sedan,Petrol,2194
+Nissan,Kicks,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2195
+Mercedes-Benz,E-Class,2013,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2196
+Toyota,Camry,2025,Automatic,4. Premium (>1M),Sedan,Hybrid,2197
+Nissan,Almera,2012,Automatic,1. Eco (<300k),Sedan,Petrol,2198
+Mazda,Mazda 2,2011,Automatic,1. Eco (<300k),Sedan,Petrol,2199
+Mazda,CX-3,2022,Automatic,2. Mid-Low (300k-500k),SUV,EV,2200
+Toyota,Camry,2007,Automatic,1. Eco (<300k),Sedan,Petrol,2201
+Toyota,bZ4X-EV,2024,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2202
+Nissan,Navara,2019,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,2203
+Toyota,Yaris ATIV,2026,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2204
+Mitsubishi,Triton,2017,Manual,2. Mid-Low (300k-500k),Pick-up,Petrol,2205
+Toyota,Yaris,2016,Automatic,1. Eco (<300k),Hatchback,Petrol,2206
+Isuzu,MU-7,2012,Automatic,1. Eco (<300k),Sedan,Petrol,2207
+Isuzu,D-MAX,2021,Automatic,3. Mid-High (500k-1M),Pick-up,EV,2208
+Honda,Jazz,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2209
+Honda,CR-V,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2210
+BMW,X1,2018,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,2211
+Hyundai,H-1,2018,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,2212
+Toyota,Altis,2008,Automatic,1. Eco (<300k),Sedan,Petrol,2213
+Toyota,Alphard,2022,Automatic,4. Premium (>1M),Sedan,EV,2214
+Ford,Everest,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2215
+Ford,Everest,2015,Automatic,3. Mid-High (500k-1M),SUV,EV,2216
+Honda,CR-V,2020,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,2217
+BMW,X1,2022,Automatic,3. Mid-High (500k-1M),Sedan,Diesel,2218
+Toyota,Hilux Vigo,2011,Manual,1. Eco (<300k),Pick-up,Diesel,2219
+Ford,Ranger,2023,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,2220
+Toyota,Hilux Vigo Champ,2012,Manual,2. Mid-Low (300k-500k),Pick-up,Petrol,2221
+Mercedes-Benz,CLS-Class,2011,Automatic,3. Mid-High (500k-1M),Sedan,EV,2222
+Lexus,Nx300h,2020,Automatic,4. Premium (>1M),SUV,Hybrid,2223
+Honda,Civic,2020,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2224
+Volkswagen,รุ่นอื่นๆ,2022,Automatic,4. Premium (>1M),Van,Petrol,2225
+MG,MG5,2024,Automatic,2. Mid-Low (300k-500k),SUV,EV,2226
+Toyota,Veloz,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2227
+Toyota,Hiace,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2228
+Mercedes-Benz,GLA-Class,2020,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2229
+Mercedes-Benz,E-Class,2017,Automatic,4. Premium (>1M),SUV,EV,2230
+Ford,Ranger,2022,Automatic,4. Premium (>1M),Pick-up,Diesel,2231
+Nissan,Kicks,2024,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2232
+Nissan,Sylphy,2016,Automatic,1. Eco (<300k),Sedan,EV,2233
+Honda,Mobilio,2017,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2234
+Honda,WR-V,2023,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2235
+Mercedes-Benz,CLK-Class,2004,Automatic,1. Eco (<300k),Coupe,EV,2236
+Toyota,C-HR,2022,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2237
+Porsche,911 Carrera,2025,Automatic,4. Premium (>1M),Sedan,Petrol,2238
+Porsche,911,2019,Manual,4. Premium (>1M),Sedan,Petrol,2239
+Toyota,Sienta,2019,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,2240
+Mercedes-Benz,S-Class,2024,Automatic,4. Premium (>1M),Sedan,Petrol,2241
+Porsche,911 Targa 4S,2021,Automatic,4. Premium (>1M),Sedan,Petrol,2242
+Mercedes-Benz,G-Class,2020,Automatic,4. Premium (>1M),SUV,Petrol,2243
+Porsche,911 Carrera GTS,2023,Automatic,4. Premium (>1M),Sedan,Petrol,2244
+MG,VS HEV,2026,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2245
+Nissan,Navara,2021,Manual,2. Mid-Low (300k-500k),Pick-up,Diesel,2246
+Isuzu,D-MAX,2022,Manual,3. Mid-High (500k-1M),Pick-up,EV,2247
+Honda,Jazz,2012,Automatic,1. Eco (<300k),Hatchback,Petrol,2248
+Toyota,Fortuner,2019,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2249
+Ford,Ranger,2023,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,2250
+Mitsubishi,Xpander,2020,Automatic,3. Mid-High (500k-1M),SUV,EV,2251
+Honda,HR-V,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2252
+Mitsubishi,Triton,2020,Manual,2. Mid-Low (300k-500k),Sedan,Petrol,2253
+Toyota,Sienta,2018,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2254
+MG,HS,2022,Automatic,2. Mid-Low (300k-500k),SUV,EV,2255
+Mazda,Mazda 2,2020,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2256
+Toyota,Altis,2017,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2257
+Toyota,Hilux Revo,2016,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,2258
+Isuzu,D-MAX,2023,Manual,3. Mid-High (500k-1M),Pick-up,Diesel,2259
+Mitsubishi,Pajero Sport,2020,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2260
+Toyota,Yaris,2017,Automatic,1. Eco (<300k),Hatchback,Petrol,2261
+Nissan,Teana,2011,Automatic,1. Eco (<300k),Sedan,Petrol,2262
+Mazda,CX-3,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2263
+Toyota,Commuter,2013,Manual,2. Mid-Low (300k-500k),Van,Diesel,2264
+Mitsubishi,Outlander,2020,Automatic,3. Mid-High (500k-1M),SUV,Hybrid,2265
+Toyota,Hilux Vigo Champ,2012,Manual,1. Eco (<300k),Sedan,Diesel,2266
+Mercedes-Benz,GLC-Class,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,2267
+Isuzu,D-MAX,2021,Manual,3. Mid-High (500k-1M),Pick-up,EV,2268
+Isuzu,D-MAX,2023,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2269
+Mitsubishi,Attrage,2021,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2270
+Toyota,Yaris ATIV,2025,Automatic,3. Mid-High (500k-1M),Hatchback,Hybrid,2271
+Honda,CR-V,2012,Automatic,2. Mid-Low (300k-500k),SUV,Petrol,2272
+Isuzu,D-MAX,2011,Automatic,1. Eco (<300k),Sedan,Petrol,2273
+Suzuki,Carry,2023,Manual,1. Eco (<300k),Pick-up,Petrol,2274
+Ford,Ranger,2022,Manual,1. Eco (<300k),Pick-up,Diesel,2275
+Mitsubishi,Attrage,2022,Automatic,1. Eco (<300k),Sedan,Petrol,2276
+Mazda,Mazda3,2017,Automatic,1. Eco (<300k),Sedan,EV,2277
+Nissan,Navara,2020,Manual,1. Eco (<300k),Sedan,Petrol,2278
+BMW,Series 3,2021,Automatic,4. Premium (>1M),Sedan,Petrol,2279
+Chevrolet,Captiva,2012,Automatic,1. Eco (<300k),SUV,Hybrid,2280
+Honda,Civic,2007,Automatic,1. Eco (<300k),Sedan,Petrol,2281
+BMW,Series 2,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2282
+Nissan,Note,2019,Automatic,1. Eco (<300k),Sedan,Petrol,2283
+Honda,CR-V,2017,Automatic,2. Mid-Low (300k-500k),SUV,EV,2284
+Mitsubishi,Triton,2022,Manual,2. Mid-Low (300k-500k),Sedan,Petrol,2285
+Nissan,Almera,2018,Automatic,1. Eco (<300k),Sedan,Petrol,2286
+Honda,Civic,2016,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2287
+Honda,Jazz,2019,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2288
+Mazda,Mazda3,2014,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2289
+Toyota,Vios,2014,Automatic,1. Eco (<300k),Sedan,Petrol,2290
+Isuzu,D-MAX,2022,Manual,2. Mid-Low (300k-500k),Sedan,Petrol,2291
+Mercedes-Benz,GLA-Class,2017,Automatic,3. Mid-High (500k-1M),Hatchback,EV,2292
+Audi,Audi A7,2019,Automatic,4. Premium (>1M),Sedan,Petrol,2293
+Peugeot,RCZ,2014,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2294
+Mitsubishi,Pajero Sport,2018,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2295
+Volvo,V60,2020,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2296
+Isuzu,D-MAX,2022,Manual,2. Mid-Low (300k-500k),Pick-up,Petrol,2297
+Toyota,Yaris ATIV,2019,Automatic,1. Eco (<300k),Hatchback,Petrol,2298
+Honda,CR-V,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2299
+BMW,X5,2023,Automatic,4. Premium (>1M),Hatchback,EV,2300
+BMW,Series 3,2022,Automatic,4. Premium (>1M),Sedan,Petrol,2301
+Mercedes-Benz,CLS-Class,2022,Automatic,4. Premium (>1M),Sedan,Diesel,2302
+Toyota,Alphard,2023,Automatic,4. Premium (>1M),Sedan,Hybrid,2303
+BMW,X4,2022,Automatic,4. Premium (>1M),Hatchback,EV,2304
+Nissan,Terra,2023,Automatic,3. Mid-High (500k-1M),SUV,Diesel,2305
+Mercedes-Benz,E-Class,2003,Automatic,1. Eco (<300k),Sedan,Petrol,2306
+Toyota,Hilux Revo,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2307
+Toyota,Fortuner,2012,Automatic,2. Mid-Low (300k-500k),SUV,Diesel,2308
+Honda,Jazz,2017,Automatic,1. Eco (<300k),Sedan,Petrol,2309
+Honda,HR-V,2018,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2310
+Honda,Jazz,2013,Automatic,1. Eco (<300k),Sedan,Petrol,2311
+Toyota,Camry,2013,Automatic,1. Eco (<300k),Sedan,Hybrid,2312
+Isuzu,D-MAX,2012,Manual,1. Eco (<300k),Pick-up,Diesel,2313
+Toyota,Camry,2016,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2314
+Toyota,Commuter,2012,Manual,2. Mid-Low (300k-500k),Sedan,Diesel,2315
+Hyundai,H-1,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2316
+Changan,Deepal,2023,Automatic,3. Mid-High (500k-1M),Hatchback,EV,2317
+Hyundai,Staria,2023,Automatic,4. Premium (>1M),Sedan,EV,2318
+Toyota,Hilux Revo,2022,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2319
+Mitsubishi,Pajero Sport,2023,Automatic,3. Mid-High (500k-1M),SUV,EV,2320
+Nissan,Teana,2014,Automatic,1. Eco (<300k),Sedan,EV,2321
+Nissan,March,2018,Automatic,1. Eco (<300k),Sedan,EV,2322
+Mercedes-Benz,E-Class,2021,Automatic,3. Mid-High (500k-1M),Van,EV,2323
+Toyota,C-HR,2019,Automatic,3. Mid-High (500k-1M),Sedan,EV,2324
+Mercedes-Benz,CLS-Class,2021,Automatic,4. Premium (>1M),Sedan,EV,2325
+Hyundai,Grand Starex,2020,Automatic,4. Premium (>1M),Sedan,EV,2326
+Hyundai,H-1,2021,Automatic,3. Mid-High (500k-1M),Sedan,EV,2327
+Toyota,Fortuner,2021,Automatic,4. Premium (>1M),SUV,EV,2328
+Toyota,Vellfire,2022,Automatic,4. Premium (>1M),Sedan,EV,2329
+Honda,CR-V,2019,Automatic,3. Mid-High (500k-1M),SUV,EV,2330
+GWM,Haval H6,2024,Automatic,3. Mid-High (500k-1M),Hatchback,EV,2331
+Nissan,X-Trail,2017,Automatic,2. Mid-Low (300k-500k),Sedan,Hybrid,2332
+Kia,Grand Carnival,2018,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2333
+Mazda,CX-30,2022,Automatic,3. Mid-High (500k-1M),SUV,EV,2334
+Mitsubishi,Lancer Ex,2011,Automatic,1. Eco (<300k),Van,EV,2335
+Isuzu,D-MAX,2017,Manual,2. Mid-Low (300k-500k),Sedan,Petrol,2336
+Toyota,Vios,2011,Automatic,1. Eco (<300k),Sedan,EV,2337
+Nissan,NP300-NAVARA,2016,Manual,1. Eco (<300k),Pick-up,Diesel,2338
+Honda,Civic,2005,Automatic,1. Eco (<300k),Sedan,Petrol,2339
+Honda,City,2014,Automatic,1. Eco (<300k),Sedan,EV,2340
+Honda,HR-V,2014,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2341
+Toyota,Yaris,2016,Automatic,1. Eco (<300k),Hatchback,EV,2342
+Toyota,Camry,2015,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2343
+Isuzu,D-MAX,2020,Manual,2. Mid-Low (300k-500k),Sedan,Petrol,2344
+Hyundai,H-1,2011,Automatic,2. Mid-Low (300k-500k),Sedan,Petrol,2345
+Mitsubishi,Triton,2022,Automatic,3. Mid-High (500k-1M),Pick-up,Diesel,2346
+MG,MG4,2023,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2347
+Toyota,Avanza,2011,Automatic,1. Eco (<300k),Van,Petrol,2348
+Toyota,Hilux Revo,2020,Automatic,3. Mid-High (500k-1M),Pick-up,EV,2349
+Mazda,CX-3,2016,Automatic,2. Mid-Low (300k-500k),SUV,EV,2350
+Honda,City,2012,Automatic,1. Eco (<300k),Sedan,EV,2351
+Ford,Ranger,2020,Automatic,2. Mid-Low (300k-500k),Pick-up,EV,2352
+Honda,HR-V,2022,Automatic,3. Mid-High (500k-1M),Sedan,Hybrid,2353
+Mini,JOHN COOPER WORK,2025,Automatic,4. Premium (>1M),Sedan,Petrol,2354
+Isuzu,D-MAX,2007,Manual,1. Eco (<300k),Sedan,Petrol,2355
+Mazda,CX-3,2019,Automatic,2. Mid-Low (300k-500k),SUV,EV,2356
+Mercedes-Benz,E-Class,2025,Automatic,4. Premium (>1M),Sedan,Hybrid,2357
+Mitsubishi,Triton,2022,Manual,2. Mid-Low (300k-500k),Pick-up,EV,2358
+Toyota,Fortuner,2021,Automatic,3. Mid-High (500k-1M),SUV,EV,2359
+Toyota,Sienta,2017,Automatic,2. Mid-Low (300k-500k),Sedan,EV,2360
+Honda,City,2016,Automatic,1. Eco (<300k),Hatchback,EV,2361
+Toyota,Vellfire,2018,Automatic,4. Premium (>1M),Sedan,Petrol,2362
+Toyota,Yaris,2022,Automatic,2. Mid-Low (300k-500k),Hatchback,EV,2363
+ยี่ห้ออื่นๆ,รุ่นอื่นๆ,2026,Automatic,4. Premium (>1M),Hatchback,EV,2364
+Jaguar,XJ8,2004,Automatic,3. Mid-High (500k-1M),Sedan,Petrol,2365
+Mercedes-Benz,V-Class,2014,Automatic,2. Mid-Low (300k-500k),Van,Diesel,2366
+Lexus,ES300h,2022,Automatic,4. Premium (>1M),Sedan,Hybrid,2367
+Volvo,S90,2022,Automatic,4. Premium (>1M),SUV,Hybrid,2368

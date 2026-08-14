@@ -32,7 +32,6 @@ project-group/
 │   ├── FactMarketListings.csv     # Fact Table 2 (ราคากลางประกาศขาย One2car)
 │   ├── DimCar.csv                 # Dimension รถยนต์
 │   ├── DimDate.csv                # Dimension วันที่
-│   ├── DimCustomer.csv            # Dimension ลูกค้า
 │   ├── DimLocation.csv            # Dimension ทำเล/จังหวัด
 │   └── DimAcquisitionSource.csv   # Dimension แหล่งที่มาการซื้อ
 ├── 04_Dashboard/                  # ชิ้นงานและไฟล์ Dashboard
@@ -45,23 +44,9 @@ project-group/
 
 ---
 
-## 🐳 การใช้งาน PostgreSQL ร่วมกับ Docker (Optional & Recommended)
-
-หากต้องการเปิดใช้งาน **PostgreSQL Data Warehouse** ผ่าน Docker:
-
-```bash
-# 1. เปิดใช้งาน PostgreSQL Container
-docker compose up -d
-
-# 2. ตรวจสอบสถานะการทำงานของ Container
-docker compose ps
-```
-
----
-
 ## 🚀 วิธีการรันกระบวนการ ETL (How to Run ETL Pipeline)
 
-คุณสามารถสั่งรันกระบวนการ ETL ทั้งหมด (Extract -> Clean -> Transform -> Integrate -> Validate -> Load) ได้อัตโนมัติผ่าน Terminal เพียงใช้คำสั่งเดียว:
+คุณสามารถสั่งรันกระบวนการ ETL ทั้งหมด (Extract -> Clean -> Transform -> Integrate -> Validate -> Load) ได้อัตโนมัติผ่าน Terminal:
 
 ```bash
 # 1. เข้าสู่โฟลเดอร์โครงการ
@@ -70,8 +55,11 @@ cd /path/to/project-group
 # 2. เปิดใช้งาน Virtual Environment
 source venv/bin/activate
 
-# 3. รันสคริปต์ ETL อัตโนมัติ
+# 3. รันสคริปต์ ETL อัตโนมัติ (โหลดเข้า SQLite + Local Docker PostgreSQL)
 python 02_ETL/run_pipeline.py
+
+# 4. รันสคริปต์ ETL และยิงข้อมูลขึ้น Supabase Cloud PostgreSQL
+python 02_ETL/run_pipeline.py --supabase-url "postgresql://postgres:YOUR_PASSWORD@db.sveahtsaglbgrsnoiwjv.supabase.co:5432/postgres"
 ```
 
-เมื่อสคริปต์รันเสร็จสิ้น ข้อมูลจะถูกโหลดเข้าทั้ง **PostgreSQL Container**, **SQLite Database (`03_Data_Warehouse/used_car_dw.db`)**, และไฟล์ **CSV Backups** ใน [03_Data_Warehouse](file:///home/naeiger/data-min/project-group/03_Data_Warehouse) โดยอัตโนมัติพร้อมกันครับ!
+เมื่อสคริปต์รันเสร็จสิ้น ข้อมูลจะถูกโหลดเข้าทั้ง **Supabase Cloud PostgreSQL**, **Local Docker PostgreSQL**, **SQLite Database (`03_Data_Warehouse/used_car_dw.db`)**, และไฟล์ **CSV Backups** ใน [03_Data_Warehouse](file:///home/naeiger/data-min/project-group/03_Data_Warehouse) โดยอัตโนมัติพร้อมกันครับ!

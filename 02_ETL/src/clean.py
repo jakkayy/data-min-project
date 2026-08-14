@@ -1,6 +1,6 @@
 """
 Module: 02_ETL/src/clean.py
-Description: Cleans prices, mileages, parses car titles via Regex, and extracts BodyType & FuelType.
+Description: Cleans prices, mileages, parses car titles via Regex, and extracts BodyType & FuelType for Kaidee Auto JSON, One2car, and US Sales.
 """
 
 import re
@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def clean_price(val):
-  """Cleans price string into numeric float."""
+  """Cleans price string/number into numeric float."""
   if pd.isna(val):
     return None
   nums = re.sub(r'[^\d]', '', str(val))
@@ -16,10 +16,7 @@ def clean_price(val):
 
 
 def clean_mileage(val):
-  """Cleans mileage string (handles range e.g.
-
-  '170 - 175K กม.') into numeric int.
-  """
+  """Cleans mileage string/number (handles ranges e.g. '170 - 175K กม.') into numeric int."""
   if pd.isna(val):
     return None
   s = str(val).replace('กม.', '').replace(',', '').strip()
@@ -28,12 +25,12 @@ def clean_mileage(val):
     low = float(match_range.group(1)) * 1000
     high = float(match_range.group(2)) * 1000
     return int((low + high) / 2)
-  nums = re.sub(r'[^\\d]', '', s)
+  nums = re.sub(r'[^\d]', '', s)
   return int(nums) if nums != '' else None
 
 
 def extract_body_type(title_str, desc_str=''):
-  """Extracts specific BodyType (Pick-up, SUV, Sedan, Hatchback, Coupe, Van) from car_title & description."""
+  """Extracts BodyType (Pick-up, SUV, Sedan, Hatchback, Coupe, Van) from car title & description."""
   text = (str(title_str) + ' ' + str(desc_str)).lower()
   if any(
       k in text
@@ -98,7 +95,7 @@ def extract_body_type(title_str, desc_str=''):
 
 
 def extract_fuel_type(title_str, desc_str=''):
-  """Extracts FuelType (Diesel, Petrol, Hybrid, EV) from car_title & description."""
+  """Extracts FuelType (Diesel, Petrol, Hybrid, EV) from car title & description."""
   text = (str(title_str) + ' ' + str(desc_str)).lower()
   if any(k in text for k in ['e:hev', 'hev', 'hybrid', 'ไฮบริด']):
     return 'Hybrid'
@@ -127,7 +124,7 @@ def extract_fuel_type(title_str, desc_str=''):
 
 
 def parse_car_title(title, desc=''):
-  """Parses model_year, brand, model, body_type, and fuel_type from car_title & description."""
+  """Parses model_year, brand, model, body_type, and fuel_type from car title & description."""
   if pd.isna(title):
     return pd.Series([2018, 'Unknown', 'General', 'Sedan', 'Petrol'])
 
@@ -146,6 +143,34 @@ def parse_car_title(title, desc=''):
   return pd.Series([year, brand, model, body_type, fuel_type])
 
 
+def clean_kaidee_data(df_kaidee: pd.DataFrame) -> pd.DataFrame:
+  """Cleans Kaidee Auto JSON dataset."""
+  print('[Clean] Cleaning Kaidee Auto JSON dataset...')
+  df_clean = df_kaidee.dropna(subset=['price']).copy()
+  df_clean['price_clean'] = df_clean['price'].apply(clean_price)
+  df_clean['mileage_clean'] = df_clean['mileage'].apply(clean_mileage)
+
+  df_clean['model_year'] = (
+      pd.to_numeric(df_clean['year'], errors='coerce').fillna(2018).astype(int)
+  )
+  df_clean['body_type'] = df_clean.apply(
+      lambda r: extract_body_type(r.get('title'), r.get('description')), axis=1
+  )
+  df_clean['fuel_type'] = df_clean.apply(
+      lambda r: extract_fuel_type(r.get('title'), r.get('description')), axis=1
+  )
+  df_clean['transmission_clean'] = (
+      df_clean['transmission']
+      .map({'เกียร์อัตโนมัติ': 'Automatic', 'เกียร์ธรรมดา': 'Manual'})
+      .fillna('Automatic')
+  )
+  df_clean['location'] = df_clean['location'].fillna('กรุงเทพมหานคร')
+
+  df_clean = df_clean.dropna(subset=['price_clean']).copy()
+  print(f'[Clean Completed] Kaidee Auto cleaned: {len(df_clean):,} valid rows')
+  return df_clean
+
+
 def clean_one2car_data(df_one2car: pd.DataFrame) -> pd.DataFrame:
   """Cleans One2car raw dataset."""
   print(
@@ -157,7 +182,6 @@ def clean_one2car_data(df_one2car: pd.DataFrame) -> pd.DataFrame:
   df_clean['price_clean'] = df_clean['price'].apply(clean_price)
   df_clean['mileage_clean'] = df_clean['mileage'].apply(clean_mileage)
 
-  # Extract model_year, brand, model, body_type, fuel_type
   parsed = df_clean.apply(
       lambda row: parse_car_title(row.get('car_title'), row.get('description')),
       axis=1,
@@ -173,10 +197,7 @@ def clean_one2car_data(df_one2car: pd.DataFrame) -> pd.DataFrame:
   )
 
   df_clean['location'] = df_clean['location'].fillna('กรุงเทพมหานคร')
-  print(
-      f'[Clean Completed] One2car cleaned: {len(df_clean)} valid rows with'
-      ' precise BodyType & FuelType.'
-  )
+  print(f'[Clean Completed] One2car cleaned: {len(df_clean):,} valid rows')
   return df_clean
 
 
@@ -198,17 +219,7 @@ def clean_us_sales_data(df_us: pd.DataFrame) -> pd.DataFrame:
   )
 
   df_clean['body_type'] = df_clean['body_type'].fillna('Other')
-  print(f'[Clean Completed] US Sales cleaned: {len(df_clean)} valid rows')
-  return df_clean
-
-
-def clean_spec_data(df_spec: pd.DataFrame) -> pd.DataFrame:
-  """Cleans Spec combined raw dataset."""
-  print('[Clean] Cleaning Spec dataset...')
-  df_clean = df_spec.copy()
-  df_clean['AskPrice_clean'] = df_clean['AskPrice'].apply(clean_price)
-  df_clean['kmDriven_clean'] = df_clean['kmDriven'].apply(clean_mileage)
-  print(f'[Clean Completed] Spec cleaned: {len(df_clean)} valid rows')
+  print(f'[Clean Completed] US Sales cleaned: {len(df_clean):,} valid rows')
   return df_clean
 
 
