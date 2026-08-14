@@ -1,6 +1,6 @@
 """
 Module: 02_ETL/src/integrate.py
-Description: Assembles the Star Schema Data Warehouse tables (2 Fact Tables + 5 Dimensions) with Surrogate Keys.
+Description: Assembles the Star Schema Data Warehouse tables (2 Fact Tables + 5 Dimensions) with Surrogate Keys and 6 Official Thailand Regions mapping.
 """
 
 from datetime import datetime, timedelta
@@ -8,13 +8,112 @@ import numpy as np
 import pandas as pd
 
 
+def map_thailand_region(province_str: str) -> str:
+  """Maps Thai province name to one of the 6 Official Thailand Geographic Regions."""
+  if pd.isna(province_str):
+    return 'Central & Bangkok'
+
+  p = str(province_str).strip()
+
+  central = [
+      'กรุงเทพมหานคร',
+      'สมุทรปราการ',
+      'นนทบุรี',
+      'ปทุมธานี',
+      'นครปฐม',
+      'พระนครศรีอยุธยา',
+      'อ่างทอง',
+      'ลพบุรี',
+      'สิงห์บุรี',
+      'ชัยนาท',
+      'สระบุรี',
+      'สุพรรณบุรี',
+      'สมุทรสาคร',
+      'สมุทรสงคราม',
+  ]
+  north = [
+      'เชียงใหม่',
+      'เชียงราย',
+      'ลำปาง',
+      'ลำพูน',
+      'แม่ฮ่องสอน',
+      'น่าน',
+      'พะเยา',
+      'แพร่',
+      'อุตรดิตถ์',
+      'ตาก',
+      'สุโขทัย',
+      'พิษณุโลก',
+      'พิจิตร',
+      'กำแพงเพชร',
+      'เพชรบูรณ์',
+      'นครสวรรค์',
+      'อุทัยธานี',
+  ]
+  northeast = [
+      'นครราชสีมา',
+      'บุรีรัมย์',
+      'สุรินทร์',
+      'ศรีสะเกษ',
+      'อุบลราชธานี',
+      'ยโสธร',
+      'ชัยภูมิ',
+      'อำนาจเจริญ',
+      'บึงกาฬ',
+      'หนองบัวลำภู',
+      'ขอนแก่น',
+      'อุดรธานี',
+      'เลย',
+      'หนองคาย',
+      'มหาสารคาม',
+      'ร้อยเอ็ด',
+      'กาฬสินธุ์',
+      'สกลนคร',
+      'นครพนม',
+      'มุกดาหาร',
+  ]
+  east = ['ชลบุรี', 'ระยอง', 'จันทบุรี', 'ตราด', 'ฉะเชิงเทรา', 'ปราจีนบุรี', 'สระแก้ว']
+  south = [
+      'ชุมพร',
+      'สุราษฎร์ธานี',
+      'นครศรีธรรมราช',
+      'พัทลุง',
+      'สงขลา',
+      'ปัตตานี',
+      'ยะลา',
+      'นราธิวาส',
+      'ระนอง',
+      'พังงา',
+      'ภูเก็ต',
+      'กระบี่',
+      'ตรัง',
+      'สตูล',
+  ]
+  west = ['กาญจนบุรี', 'ราชบุรี', 'เพชรบุรี', 'ประจวบคีรีขันธ์']
+
+  if p in central:
+    return 'Central & Bangkok'
+  elif p in north:
+    return 'North Region'
+  elif p in northeast:
+    return 'Northeast Region'
+  elif p in east:
+    return 'East Region'
+  elif p in south:
+    return 'South Region'
+  elif p in west:
+    return 'West Region'
+  else:
+    return 'Central & Bangkok'
+
+
 def integrate_star_schema(
     df_trans: pd.DataFrame, df_us_clean: pd.DataFrame
 ) -> dict:
   """Integrates cleaned and transformed datasets into a Star Schema (2 Fact Tables + 5 Dimension Tables)."""
   print(
-      '[Integrate] Assembling Star Schema Data Warehouse tables with precise'
-      ' DimCar attributes...'
+      '[Integrate] Assembling Star Schema Data Warehouse tables with 6 Official'
+      ' Thailand Regions mapping...'
   )
 
   # Ensure body_type and fuel_type exist in df_trans
@@ -83,18 +182,11 @@ def integrate_star_schema(
   dim_date['day_name'] = dim_date['full_date'].dt.strftime('%A')
   dim_date['is_weekend'] = dim_date['full_date'].dt.dayofweek >= 5
 
-  # 3. DimLocation
+  # 3. DimLocation (Mapped with 6 Official Thailand Regions)
   provinces = df_trans['location'].dropna().unique()
   dim_location = pd.DataFrame({'province': provinces})
   dim_location['location_key'] = dim_location.index + 1
-  dim_location['region'] = dim_location['province'].apply(
-      lambda p: (
-          'Bangkok Metropolitan'
-          if p
-          in ['กรุงเทพมหานคร', 'สมุทรปราการ', 'นนทบุรี', 'ปทุมธานี', 'นครปฐม']
-          else 'Other Region'
-      )
-  )
+  dim_location['region'] = dim_location['province'].apply(map_thailand_region)
 
   df_trans = df_trans.merge(
       dim_location[['province', 'location_key']],

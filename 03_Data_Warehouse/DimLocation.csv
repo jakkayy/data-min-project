@@ -1,46 +1,46 @@
 province,location_key,region
-กรุงเทพมหานคร,1,Bangkok Metropolitan
-สมุทรปราการ,2,Bangkok Metropolitan
-ปทุมธานี,3,Bangkok Metropolitan
-ชลบุรี,4,Other Region
-ระยอง,5,Other Region
-นครปฐม,6,Bangkok Metropolitan
-พระนครศรีอยุธยา,7,Other Region
-ฉะเชิงเทรา,8,Other Region
-เชียงใหม่,9,Other Region
-นนทบุรี,10,Bangkok Metropolitan
-ลำปาง,11,Other Region
-สุราษฎร์ธานี,12,Other Region
-สงขลา,13,Other Region
-อุดรธานี,14,Other Region
-กาญจนบุรี,15,Other Region
-มหาสารคาม,16,Other Region
-ภูเก็ต,17,Other Region
-เชียงราย,18,Other Region
-สตูล,19,Other Region
-สมุทรสาคร,20,Other Region
-ลพบุรี,21,Other Region
-นครศรีธรรมราช,22,Other Region
-แพร่,23,Other Region
-ชัยภูมิ,24,Other Region
-อุบลราชธานี,25,Other Region
-นครสวรรค์,26,Other Region
-ร้อยเอ็ด,27,Other Region
-ขอนแก่น,28,Other Region
-เพชรบุรี,29,Other Region
-นครราชสีมา,30,Other Region
-บุรีรัมย์,31,Other Region
-สกลนคร,32,Other Region
-ราชบุรี,33,Other Region
-พังงา,34,Other Region
-สิงห์บุรี,35,Other Region
-จันทบุรี,36,Other Region
-กระบี่,37,Other Region
-ตรัง,38,Other Region
-สุรินทร์,39,Other Region
-ชุมพร,40,Other Region
-ประจวบคีรีขันธ์,41,Other Region
-ลำพูน,42,Other Region
-ชัยนาท,43,Other Region
-สระบุรี,44,Other Region
-พิษณุโลก,45,Other Region
+กรุงเทพมหานคร,1,Central & Bangkok
+สมุทรปราการ,2,Central & Bangkok
+ปทุมธานี,3,Central & Bangkok
+ชลบุรี,4,East Region
+ระยอง,5,East Region
+นครปฐม,6,Central & Bangkok
+พระนครศรีอยุธยา,7,Central & Bangkok
+ฉะเชิงเทรา,8,East Region
+เชียงใหม่,9,North Region
+นนทบุรี,10,Central & Bangkok
+ลำปาง,11,North Region
+สุราษฎร์ธานี,12,South Region
+สงขลา,13,South Region
+อุดรธานี,14,Northeast Region
+กาญจนบุรี,15,West Region
+มหาสารคาม,16,Northeast Region
+ภูเก็ต,17,South Region
+เชียงราย,18,North Region
+สตูล,19,South Region
+สมุทรสาคร,20,Central & Bangkok
+ลพบุรี,21,Central & Bangkok
+นครศรีธรรมราช,22,South Region
+แพร่,23,North Region
+ชัยภูมิ,24,Northeast Region
+อุบลราชธานี,25,Northeast Region
+นครสวรรค์,26,North Region
+ร้อยเอ็ด,27,Northeast Region
+ขอนแก่น,28,Northeast Region
+เพชรบุรี,29,West Region
+นครราชสีมา,30,Northeast Region
+บุรีรัมย์,31,Northeast Region
+สกลนคร,32,Northeast Region
+ราชบุรี,33,West Region
+พังงา,34,South Region
+สิงห์บุรี,35,Central & Bangkok
+จันทบุรี,36,East Region
+กระบี่,37,South Region
+ตรัง,38,South Region
+สุรินทร์,39,Northeast Region
+ชุมพร,40,South Region
+ประจวบคีรีขันธ์,41,West Region
+ลำพูน,42,North Region
+ชัยนาท,43,Central & Bangkok
+สระบุรี,44,Central & Bangkok
+พิษณุโลก,45,North Region
