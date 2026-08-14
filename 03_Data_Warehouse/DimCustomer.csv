@@ -1,101 +1,101 @@
 customer_key,province,payment_method,customer_segment
 1,พระนครศรีอยุธยา,Bank Transfer,First-Time Buyer
-2,เชียงราย,Bank Transfer,Individual
-3,ชลบุรี,Bank Transfer,Corporate
-4,นครราชสีมา,Cash,Corporate
-5,ชัยภูมิ,Finance/Leasing,First-Time Buyer
-6,สมุทรสาคร,Bank Transfer,First-Time Buyer
-7,บุรีรัมย์,Finance/Leasing,First-Time Buyer
-8,ชัยภูมิ,Cash,First-Time Buyer
-9,พระนครศรีอยุธยา,Finance/Leasing,First-Time Buyer
-10,นครสวรรค์,Finance/Leasing,Corporate
-11,สงขลา,Bank Transfer,Corporate
-12,ฉะเชิงเทรา,Bank Transfer,Corporate
-13,ระยอง,Cash,Corporate
-14,สงขลา,Finance/Leasing,Individual
-15,เพชรบุรี,Bank Transfer,Corporate
-16,สมุทรสาคร,Bank Transfer,Individual
-17,อุดรธานี,Bank Transfer,Corporate
-18,สกลนคร,Cash,First-Time Buyer
-19,ร้อยเอ็ด,Finance/Leasing,First-Time Buyer
-20,อุบลราชธานี,Bank Transfer,First-Time Buyer
-21,ชลบุรี,Finance/Leasing,Individual
-22,ลพบุรี,Cash,Corporate
-23,เชียงราย,Finance/Leasing,Corporate
-24,กาญจนบุรี,Bank Transfer,Individual
-25,ชัยภูมิ,Finance/Leasing,Individual
-26,ฉะเชิงเทรา,Finance/Leasing,Individual
-27,ขอนแก่น,Cash,Individual
-28,ลพบุรี,Cash,Individual
-29,มหาสารคาม,Finance/Leasing,First-Time Buyer
-30,มหาสารคาม,Finance/Leasing,Corporate
-31,ภูเก็ต,Finance/Leasing,Individual
-32,เชียงใหม่,Cash,First-Time Buyer
-33,เพชรบุรี,Cash,Individual
-34,เชียงราย,Finance/Leasing,First-Time Buyer
-35,สุราษฎร์ธานี,Cash,Individual
-36,สตูล,Bank Transfer,Corporate
-37,นครศรีธรรมราช,Cash,Individual
-38,กาญจนบุรี,Cash,Individual
-39,กรุงเทพมหานคร,Cash,Corporate
-40,สมุทรปราการ,Bank Transfer,Corporate
-41,ฉะเชิงเทรา,Bank Transfer,Individual
-42,นครศรีธรรมราช,Bank Transfer,Corporate
-43,อุบลราชธานี,Finance/Leasing,Corporate
-44,สมุทรปราการ,Finance/Leasing,First-Time Buyer
-45,เชียงใหม่,Bank Transfer,Corporate
-46,เชียงใหม่,Finance/Leasing,Corporate
-47,สงขลา,Finance/Leasing,Individual
-48,นครปฐม,Finance/Leasing,Individual
-49,นครราชสีมา,Bank Transfer,First-Time Buyer
-50,กาญจนบุรี,Cash,Individual
-51,กาญจนบุรี,Bank Transfer,Corporate
-52,พระนครศรีอยุธยา,Bank Transfer,Corporate
-53,ลำปาง,Finance/Leasing,Corporate
-54,สมุทรปราการ,Finance/Leasing,Individual
-55,นนทบุรี,Cash,Corporate
-56,ภูเก็ต,Cash,Corporate
-57,พระนครศรีอยุธยา,Cash,First-Time Buyer
-58,ชลบุรี,Cash,First-Time Buyer
-59,บุรีรัมย์,Bank Transfer,First-Time Buyer
-60,อุบลราชธานี,Cash,Individual
-61,สงขลา,Bank Transfer,Corporate
-62,เชียงราย,Finance/Leasing,Corporate
-63,ลพบุรี,Cash,Corporate
-64,กรุงเทพมหานคร,Finance/Leasing,First-Time Buyer
-65,ฉะเชิงเทรา,Finance/Leasing,Corporate
-66,ลพบุรี,Bank Transfer,Corporate
-67,ลพบุรี,Cash,Corporate
-68,ร้อยเอ็ด,Bank Transfer,Corporate
-69,สตูล,Finance/Leasing,Corporate
-70,แพร่,Cash,Individual
-71,ระยอง,Finance/Leasing,Corporate
-72,ฉะเชิงเทรา,Finance/Leasing,Individual
-73,ลำปาง,Cash,Corporate
-74,มหาสารคาม,Cash,Individual
-75,ชัยภูมิ,Cash,Corporate
-76,ลพบุรี,Bank Transfer,Corporate
-77,แพร่,Bank Transfer,Corporate
-78,ฉะเชิงเทรา,Finance/Leasing,Corporate
-79,พระนครศรีอยุธยา,Cash,First-Time Buyer
-80,สมุทรปราการ,Finance/Leasing,Corporate
-81,นครราชสีมา,Finance/Leasing,Individual
-82,สงขลา,Finance/Leasing,First-Time Buyer
-83,แพร่,Finance/Leasing,First-Time Buyer
-84,เพชรบุรี,Finance/Leasing,Corporate
-85,สมุทรสาคร,Cash,Individual
-86,มือสอง,Bank Transfer,Individual
-87,เพชรบุรี,Cash,First-Time Buyer
-88,กาญจนบุรี,Cash,Individual
-89,แพร่,Cash,Corporate
-90,ปทุมธานี,Bank Transfer,Corporate
-91,เพชรบุรี,Bank Transfer,Corporate
-92,ฉะเชิงเทรา,Bank Transfer,Corporate
-93,นครศรีธรรมราช,Cash,Corporate
-94,เพชรบุรี,Bank Transfer,First-Time Buyer
-95,สมุทรปราการ,Finance/Leasing,Corporate
-96,กรุงเทพมหานคร,Bank Transfer,Corporate
-97,สมุทรสาคร,Cash,First-Time Buyer
-98,ลพบุรี,Cash,First-Time Buyer
-99,ฉะเชิงเทรา,Finance/Leasing,First-Time Buyer
-100,ร้อยเอ็ด,Bank Transfer,Individual
+2,เชียงราย,Bank Transfer,Corporate
+3,ประจวบคีรีขันธ์,Bank Transfer,First-Time Buyer
+4,จันทบุรี,Finance/Leasing,Individual
+5,ประจวบคีรีขันธ์,Finance/Leasing,Corporate
+6,จันทบุรี,Bank Transfer,Individual
+7,สระบุรี,Finance/Leasing,Individual
+8,ชลบุรี,Cash,First-Time Buyer
+9,นครราชสีมา,Bank Transfer,Corporate
+10,ชัยภูมิ,Bank Transfer,First-Time Buyer
+11,สมุทรสาคร,Cash,Individual
+12,บุรีรัมย์,Cash,Corporate
+13,ชัยภูมิ,Finance/Leasing,Individual
+14,พระนครศรีอยุธยา,Cash,Individual
+15,นครสวรรค์,Bank Transfer,Corporate
+16,สงขลา,Finance/Leasing,Corporate
+17,ฉะเชิงเทรา,Cash,Corporate
+18,ระยอง,Finance/Leasing,First-Time Buyer
+19,สระบุรี,Finance/Leasing,First-Time Buyer
+20,สงขลา,Finance/Leasing,Individual
+21,เพชรบุรี,Finance/Leasing,Corporate
+22,สมุทรสาคร,Cash,Individual
+23,อุดรธานี,Bank Transfer,Individual
+24,สกลนคร,Bank Transfer,Individual
+25,ร้อยเอ็ด,Cash,Individual
+26,อุบลราชธานี,Bank Transfer,Individual
+27,ชลบุรี,Finance/Leasing,Corporate
+28,ลพบุรี,Finance/Leasing,First-Time Buyer
+29,เชียงราย,Finance/Leasing,Corporate
+30,สุรินทร์,Cash,Corporate
+31,กาญจนบุรี,Finance/Leasing,Corporate
+32,ตรัง,Finance/Leasing,First-Time Buyer
+33,ชัยภูมิ,Cash,First-Time Buyer
+34,ฉะเชิงเทรา,Finance/Leasing,First-Time Buyer
+35,ขอนแก่น,Finance/Leasing,Corporate
+36,ลพบุรี,Bank Transfer,First-Time Buyer
+37,มหาสารคาม,Cash,Individual
+38,มหาสารคาม,Finance/Leasing,First-Time Buyer
+39,สิงห์บุรี,Finance/Leasing,Corporate
+40,ภูเก็ต,Finance/Leasing,Corporate
+41,เชียงใหม่,Finance/Leasing,Individual
+42,สิงห์บุรี,Bank Transfer,First-Time Buyer
+43,เพชรบุรี,Bank Transfer,First-Time Buyer
+44,สุรินทร์,Bank Transfer,Individual
+45,เชียงราย,Bank Transfer,Corporate
+46,สุราษฎร์ธานี,Cash,Corporate
+47,สตูล,Finance/Leasing,First-Time Buyer
+48,นครศรีธรรมราช,Bank Transfer,First-Time Buyer
+49,กาญจนบุรี,Finance/Leasing,First-Time Buyer
+50,กรุงเทพมหานคร,Cash,First-Time Buyer
+51,สมุทรปราการ,Finance/Leasing,First-Time Buyer
+52,ฉะเชิงเทรา,Finance/Leasing,Corporate
+53,นครศรีธรรมราช,Bank Transfer,Corporate
+54,อุบลราชธานี,Bank Transfer,Corporate
+55,สมุทรปราการ,Cash,Corporate
+56,เชียงใหม่,Finance/Leasing,Individual
+57,เชียงใหม่,Bank Transfer,Corporate
+58,สงขลา,Bank Transfer,Individual
+59,นครปฐม,Bank Transfer,Corporate
+60,นครราชสีมา,Cash,First-Time Buyer
+61,กาญจนบุรี,Finance/Leasing,First-Time Buyer
+62,กาญจนบุรี,Bank Transfer,First-Time Buyer
+63,พระนครศรีอยุธยา,Finance/Leasing,Individual
+64,ลำปาง,Cash,Corporate
+65,ชุมพร,Finance/Leasing,Corporate
+66,ตรัง,Bank Transfer,Individual
+67,ชุมพร,Finance/Leasing,Individual
+68,สมุทรปราการ,Finance/Leasing,Individual
+69,สุรินทร์,Cash,Individual
+70,นนทบุรี,Cash,Individual
+71,สระบุรี,Finance/Leasing,First-Time Buyer
+72,ภูเก็ต,Finance/Leasing,Corporate
+73,พระนครศรีอยุธยา,Finance/Leasing,Individual
+74,ชุมพร,Cash,First-Time Buyer
+75,สุรินทร์,Cash,Individual
+76,ชลบุรี,Finance/Leasing,First-Time Buyer
+77,สิงห์บุรี,Cash,Individual
+78,จันทบุรี,Bank Transfer,Corporate
+79,บุรีรัมย์,Cash,Individual
+80,อุบลราชธานี,Cash,Individual
+81,ประจวบคีรีขันธ์,Cash,Corporate
+82,สงขลา,Bank Transfer,Corporate
+83,เชียงราย,Bank Transfer,Individual
+84,ลพบุรี,Bank Transfer,Corporate
+85,กรุงเทพมหานคร,Finance/Leasing,Corporate
+86,จันทบุรี,Finance/Leasing,First-Time Buyer
+87,ฉะเชิงเทรา,Bank Transfer,Corporate
+88,ลพบุรี,Finance/Leasing,Corporate
+89,ชัยนาท,Finance/Leasing,Individual
+90,ลพบุรี,Finance/Leasing,Individual
+91,ร้อยเอ็ด,Bank Transfer,First-Time Buyer
+92,สตูล,Cash,Individual
+93,แพร่,Bank Transfer,Corporate
+94,ชัยนาท,Bank Transfer,Corporate
+95,สิงห์บุรี,Finance/Leasing,Corporate
+96,ชุมพร,Finance/Leasing,Individual
+97,ลำพูน,Cash,Corporate
+98,ระยอง,Cash,Corporate
+99,ประจวบคีรีขันธ์,Cash,First-Time Buyer
+100,ฉะเชิงเทรา,Cash,First-Time Buyer
