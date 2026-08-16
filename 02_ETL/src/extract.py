@@ -1,8 +1,3 @@
-"""
-Module: 02_ETL/src/extract.py
-Description: Ingests raw data from 3 Data Sources: Kaidee Auto (JSON), One2car (Multi-file CSVs), and US Sales (CSV Log).
-"""
-
 import json
 import os
 import glob
@@ -26,13 +21,13 @@ def extract_raw_data(base_dir: str = '.') -> tuple:
   """Ingests raw data from Kaidee Auto JSON, One2car Multi-file series, and US Sales dataset."""
   raw_dir = os.path.join(base_dir, '01_Raw_Data')
 
-  # Data Source 1: Kaidee Auto JSON Data Source
+  # Data Source 1: Kaidee
   kaidee_json_path = os.path.join(raw_dir, 'kaidee', 'kaidee_cars_detail.json')
   print(f'[Extract] Ingesting Data Source 1: Kaidee Auto JSON from {kaidee_json_path}...')
   with open(kaidee_json_path, 'r', encoding='utf-8') as f:
     df_kaidee = pd.DataFrame(json.load(f))
 
-  # Data Source 2: Multi-file One2car Web Scraped Series
+  # Data Source 2: One2car
   one2car_folder = os.path.join(raw_dir, 'one2car')
   one2car_files = sorted(glob.glob(os.path.join(one2car_folder, 'one2car-11-*.csv')))
   
@@ -45,7 +40,7 @@ def extract_raw_data(base_dir: str = '.') -> tuple:
     print(f'[Extract] Ingesting One2Car raw data from {one2car_path}...')
     df_one2car = pd.read_csv(one2car_path)
 
-  # Data Source 3: US Sales Raw Data
+  # Data Source 3: US usecar
   us_sales_path = os.path.join(raw_dir, 'us-usecar', 'used_car_sales.csv')
   print(f'[Extract] Ingesting Data Source 3: US Sales raw data from {us_sales_path}...')
   df_us_sales = pd.read_csv(us_sales_path)

@@ -1,8 +1,3 @@
-"""
-Module: 02_ETL/src/clean.py
-Description: Cleans prices, mileages, parses car titles via Regex, and extracts BodyType & FuelType for Kaidee Auto JSON, One2car, and US Sales.
-"""
-
 import re
 import pandas as pd
 
