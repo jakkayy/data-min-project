@@ -105,11 +105,13 @@ st.markdown("""
 # --- DATABASE CONNECTION & LOADING (Dynamic relative path) ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(BASE_DIR, "used_car_dw.db")
+if not os.path.exists(db_path):
+    db_path = os.path.abspath(os.path.join(BASE_DIR, "..", "03_Data_Warehouse", "used_car_dw.db"))
 
 @st.cache_data
 def load_data():
     if not os.path.exists(db_path):
-        st.error("ไม่พบไฟล์ฐานข้อมูล used_car_dw.db กรุณาตรวจสอบว่ามีไฟล์อยู่ในโฟลเดอร์เดียวกันหรือไม่")
+        st.error(f"ไม่พบไฟล์ฐานข้อมูล used_car_dw.db ที่ {db_path} กรุณาตรวจสอบว่ามีไฟล์อยู่ในโฟลเดอร์ 03_Data_Warehouse หรือไม่")
         return None, None, None, None, None
 
     conn = sqlite3.connect(db_path)
@@ -174,7 +176,7 @@ if m_sales is not None:
         selected_brands = st.multiselect(
             "เลือกแบรนด์รถยนต์ (Car Brand)", 
             sorted_brands, 
-            default=all_brands[:0]
+            default=[]
         )
     with ctrl_col2:
         selected_regions = st.multiselect(
@@ -189,17 +191,18 @@ if m_sales is not None:
             default=all_years
         )
 
-    # กรองข้อมูลตามที่ผู้ใช้เลือกในตัวกรองด้านบน
-    filtered_sales = m_sales[
-        (m_sales['brand'].isin(selected_brands)) &
-        (m_sales['region'].isin(selected_regions)) &
-        (m_sales['year'].isin(selected_years))
-    ]
-    filtered_listings = m_listings[
-        (m_listings['brand'].isin(selected_brands)) &
-        (m_listings['region'].isin(selected_regions)) &
-        (m_listings['year'].isin(selected_years))
-    ]
+    # กรองข้อมูลตามที่ผู้ใช้เลือกในตัวกรองด้านบน (ถ้าไม่เลือกแบรนด์ ให้แสดงทั้งหมด)
+    brand_cond = m_sales['brand'].isin(selected_brands) if len(selected_brands) > 0 else True
+    region_cond = m_sales['region'].isin(selected_regions) if len(selected_regions) > 0 else True
+    year_cond = m_sales['year'].isin(selected_years) if len(selected_years) > 0 else True
+
+    filtered_sales = m_sales[brand_cond & region_cond & year_cond]
+    
+    list_brand_cond = m_listings['brand'].isin(selected_brands) if len(selected_brands) > 0 else True
+    list_region_cond = m_listings['region'].isin(selected_regions) if len(selected_regions) > 0 else True
+    list_year_cond = m_listings['year'].isin(selected_years) if len(selected_years) > 0 else True
+
+    filtered_listings = m_listings[list_brand_cond & list_region_cond & list_year_cond]
 
     st.markdown(" ")
 
