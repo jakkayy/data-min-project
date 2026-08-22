@@ -48,8 +48,9 @@ def transform_data(
 
   np.random.seed(42)
 
-  # 1. Car Age
+  # 1. Car Age & Annual Mileage
   df_trans['car_age'] = (2026 - df_trans['model_year']).clip(lower=1)
+  df_trans['annual_mileage'] = (df_trans['mileage_clean'] / df_trans['car_age']).round(0).astype(int)
 
   # 2. List Price & Discounts
   df_trans['list_price'] = (
@@ -73,7 +74,7 @@ def transform_data(
       (df_trans['profit'] / df_trans['price_clean']) * 100
   ).round(2)
 
-  # 4. Depreciation Amount & Ratio
+  # 4. Depreciation Amount & Ratio (8% per year)
   deprec_rate = 0.08
   df_trans['depreciation_amount'] = (
       df_trans['list_price'] * (1 - (1 - deprec_rate) ** df_trans['car_age'])
@@ -83,6 +84,7 @@ def transform_data(
       (df_trans['discount_amount'] / df_trans['depreciation_amount']) * 100,
       0,
   ).round(2)
+  df_trans['is_discount_exceeds_deprec'] = df_trans['discount_amount'] > df_trans['depreciation_amount']
 
   # 5. Inventory & Price Tier
   df_trans['days_on_lot'] = np.random.randint(10, 120, size=len(df_trans))

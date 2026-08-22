@@ -165,45 +165,8 @@ def load_to_data_warehouse(
 
   if not pg_success:
     print(
-        "[Load Notice] Could not connect to Local Docker PostgreSQL Container"
-        " (localhost:5433/5432)."
+        "[Load Notice] Local Docker PostgreSQL is not running or not accessible."
     )
-
-  # 3. Supabase Cloud PostgreSQL Loading & Constraints
-  target_supabase = supabase_url or os.environ.get("SUPABASE_DB_URL")
-  if (
-      target_supabase
-      and "YOUR_PASSWORD_HERE" not in target_supabase
-      and "[YOUR-PASSWORD]" not in target_supabase
-  ):
-    try:
-      print(
-          f"[Load] Connecting to Supabase Cloud PostgreSQL Data Warehouse..."
-      )
-      sp_engine = create_engine(target_supabase)
-      with sp_engine.connect() as sp_conn:
-        drop_pg_tables_cascade(sp_engine)
-        for table_name, df_table in dw_tables.items():
-          df_table.to_sql(
-              table_name.lower(), sp_engine, if_exists="replace", index=False
-          )
-          print(
-              f"  [Supabase Cloud Loaded] Table {table_name.lower():20s} ->"
-              f" {len(df_table)} rows"
-          )
-        # Apply Primary Keys and Foreign Keys constraints in Supabase DDL
-        apply_pg_constraints(sp_engine)
-        print(
-            "  [Supabase Cloud Constraints] Enforced Primary Key & Foreign Key"
-            " DDL constraints."
-        )
-
-      print(
-          "\n🎉 [Supabase Cloud] Successfully loaded all Star Schema tables"
-          " with DDL PK/FK constraints into Supabase Cloud Data Warehouse!"
-      )
-    except Exception as e:
-      print(f"❌ [Supabase Notice] Failed to load to Supabase Cloud ({e}).")
 
   print(
       f'[Load Completed] Data Warehouse updated at {db_path} and CSV backups'

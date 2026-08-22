@@ -53,7 +53,7 @@ def main():
         sys.exit(1)
         
     # Step 6: Load
-    db_path = load_to_data_warehouse(dw_tables, base_dir, supabase_url=args.supabase_url)
+    db_path = load_to_data_warehouse(dw_tables, base_dir)
     
     print("\n=========================================================")
     print("  🎉 ETL PIPELINE EXECUTED SUCCESSFULLY!")
