@@ -180,7 +180,7 @@ def executive_page(sales):
         st.plotly_chart(chart_layout(figure, 400), use_container_width=True)
     with right:
         payment = sales.groupby("payment_method", dropna=False).size().reset_index(name="sales_volume")
-        st.plotly_chart(chart_layout(px.pie(payment, names="payment_method", values="sales_volume", hole=.45), 400), use_container_width=True)
+        st.plotly_chart(chart_layout(px.pie(payment, names="payment_method", values="sales_volume", hole=.45, title="Payment Method Ratio"), 400), use_container_width=True)
     left, right = st.columns(2)
     with left:
         top = sales.groupby("brand", as_index=False)["net_revenue"].sum().nlargest(5, "net_revenue")
@@ -188,6 +188,41 @@ def executive_page(sales):
     with right:
         channel = sales.groupby("source_type", dropna=False).size().reset_index(name="sales_volume")
         st.plotly_chart(chart_layout(px.bar(channel, x="source_type", y="sales_volume", color_discrete_sequence=["#0b766e"])), use_container_width=True)
+    left, right = st.columns(2)
+    with left:
+        body_data = sales.groupby("body_type", dropna=False).size().reset_index(name="sales_volume")
+        body_data["body_type"] = body_data["body_type"].fillna("Unknown")
+        body_fig = px.pie(
+            body_data,
+            names="body_type",
+            values="sales_volume",
+            hole=0.45,
+            title="Body Type Ratio (สัดส่วนประเภทรถ)",
+            color_discrete_sequence=px.colors.qualitative.Safe,
+        )
+        st.plotly_chart(chart_layout(body_fig, 400), use_container_width=True)
+    with right:
+        price_sales = sales.dropna(subset=["selling_price"]).copy()
+        if not price_sales.empty:
+            step = 100_000
+            price_sales["bin_lower"] = (price_sales["selling_price"] // step) * step
+            price_sales["bin_upper"] = price_sales["bin_lower"] + step
+            price_sales["price_range"] = price_sales["bin_lower"].apply(money) + " - " + price_sales["bin_upper"].apply(money)
+            price_data = (
+                price_sales.groupby(["bin_lower", "price_range"], as_index=False)
+                .size()
+                .rename(columns={"size": "sales_volume"})
+                .sort_values("bin_lower")
+            )
+            price_fig = px.pie(
+                price_data,
+                names="price_range",
+                values="sales_volume",
+                hole=0.45,
+                title="Price Range Ratio · ช่วงละ 100,000 บาท",
+                category_orders={"price_range": price_data["price_range"].tolist()},
+            )
+            st.plotly_chart(chart_layout(price_fig, 400), use_container_width=True)
 
 
 def profitability_page(sales, raw):
