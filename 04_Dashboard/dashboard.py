@@ -204,24 +204,44 @@ def executive_page(sales):
     with right:
         price_sales = sales.dropna(subset=["selling_price"]).copy()
         if not price_sales.empty:
-            step = 100_000
-            price_sales["bin_lower"] = (price_sales["selling_price"] // step) * step
-            price_sales["bin_upper"] = price_sales["bin_lower"] + step
-            price_sales["price_range"] = price_sales["bin_lower"].apply(money) + " - " + price_sales["bin_upper"].apply(money)
+            def compute_bin(price):
+                price = float(price)
+                if price < 300000:
+                    lower = int(price // 100000) * 100000
+                    upper = lower + 100000
+                elif price < 3000000:
+                    lower = 300000 + int((price - 300000) // 500000) * 500000
+                    upper = lower + 500000
+                elif price < 10000000:
+                    lower = 3000000 + int((price - 3000000) // 2000000) * 2000000
+                    upper = lower + 2000000
+                else:
+                    return pd.Series([10000000, "≥ ฿10,000,000"])
+                    
+                return pd.Series([lower, f"{money(lower)} - {money(upper)}"])
+
+            price_sales[["bin_lower", "price_range"]] = price_sales["selling_price"].apply(compute_bin)
             price_data = (
                 price_sales.groupby(["bin_lower", "price_range"], as_index=False)
                 .size()
                 .rename(columns={"size": "sales_volume"})
                 .sort_values("bin_lower")
             )
+            total_vol = price_data["sales_volume"].sum()
+            slice_labels = []
+            for _, row in price_data.iterrows():
+                pct = (row["sales_volume"] / total_vol) * 100
+                slice_labels.append(f"{pct:.1f}%" if pct >= 1.0 else "")
+
             price_fig = px.pie(
                 price_data,
                 names="price_range",
                 values="sales_volume",
                 hole=0.45,
-                title="Price Range Ratio · ช่วงละ 100,000 บาท",
+                title="Price Range Ratio",
                 category_orders={"price_range": price_data["price_range"].tolist()},
             )
+            price_fig.update_traces(text=slice_labels, textinfo="text")
             st.plotly_chart(chart_layout(price_fig, 400), use_container_width=True)
 
 
