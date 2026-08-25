@@ -338,11 +338,11 @@ if data:
         def reset_all_filters():
             st.session_state["filter_years"] = (min_year, max_year)
             for month_number, _ in month_values:
-                st.session_state[f"month_{month_number}"] = True
-            st.session_state["filter_regions"] = region_options
+                st.session_state[f"month_{month_number}"] = False
+            st.session_state["filter_regions"] = []
             st.session_state["filter_brands"] = []
 
-        st.button("🧹 Clear Filters", on_click=reset_all_filters, use_container_width=True)
+        st.button("Clear Filters", on_click=reset_all_filters, use_container_width=True)
 
         years = st.slider("Year", min_value=min_year, max_value=max_year, value=(min_year, max_year), key="filter_years")
         selected_years = list(range(years[0], years[1] + 1))
@@ -352,7 +352,7 @@ if data:
             if st.checkbox(str(month_name), value=True, key=f"month_{month_number}"):
                 selected_months.append(month_name)
         regions = st.multiselect("Region", region_options, default=region_options, key="filter_regions")
-        brands = st.multiselect("Brand", brand_options, default=[], key="filter_brands")
+        brands = st.multiselect("Brand", brand_options, default=brand_options, key="filter_brands")
         selections = {"year": selected_years, "month_name": selected_months, "region": regions, "brand": brands}
         st.caption("Model keys: car_key, date_key, customer_key, location_key, source_key")
     filtered_sales = apply_filters(sales, selections)
