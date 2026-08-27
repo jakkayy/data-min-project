@@ -7,6 +7,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from plotly.subplots import make_subplots
+
 
 
 st.set_page_config(page_title="Used Car Intelligence", page_icon="car", layout="wide")
@@ -49,6 +51,24 @@ st.markdown(
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "..", "03_Data_Warehouse", "used_car_dw.db")
+
+BRAND_PALETTE = [
+    "#0b766e",  # mint
+    "#e56b2f",  # orange
+    "#2a9d8f",  # teal
+    "#f4a261",  # sand
+    "#17202a",  # ink
+    "#457b9d",  # steel blue
+    "#e76f51",  # coral
+    "#68727d",  # slate
+    "#3d5a80",  # navy
+    "#d4a373",  # ochre
+]
+
+
+def status_box(message, level="info"):
+    cls = "status warn" if level == "warn" else "status"
+    st.markdown(f'<div class="{cls}">{message}</div>', unsafe_allow_html=True)
 
 
 @st.cache_data
@@ -97,9 +117,111 @@ def chart_layout(figure, height=360):
 def apply_filters(frame, selections):
     result = frame.copy()
     for column, values in selections.items():
-        if values and column in result:
+        if column not in result:
+            continue
+        if column == "brand":
+            if values:
+                result = result[result[column].isin(values)]
+        else:
             result = result[result[column].isin(values)]
     return result
+
+
+DAYS_ON_LOT_ORDER = [
+    "< 30 วัน (Fast Moving - สภาพคล่องสูง)",
+    "31–60 วัน (Normal)",
+    "61–90 วัน (Slow Moving)",
+    "> 90 วัน (High Risk - ความเสี่ยงขาดทุนสูง)",
+]
+
+
+def classify_days_on_lot(days):
+    if pd.isna(days):
+        return None
+    if days <= 30:
+        return DAYS_ON_LOT_ORDER[0]
+    elif days <= 60:
+        return DAYS_ON_LOT_ORDER[1]
+    elif days <= 90:
+        return DAYS_ON_LOT_ORDER[2]
+    else:
+        return DAYS_ON_LOT_ORDER[3]
+
+
+def top_bottom_diverging_chart(
+    frame, group_col, value_col, title, x_label, n=5, agg="sum"
+):
+    """สร้างกราฟแท่งแบบ 2 ช่องเปรียบเทียบ Top n และ Bottom n แบบแยกแกน X"""
+    grouped = (
+        frame.groupby(group_col, dropna=False)[value_col]
+        .agg(agg)
+        .sort_values(ascending=False)
+        .dropna()
+    )
+
+    if grouped.empty:
+        return None
+
+    top = grouped.head(n).sort_values(ascending=True)
+    bottom = grouped.tail(n).sort_values(ascending=True)
+
+    # 1. เพิ่มระยะห่างระหว่างซ้าย-ขวา (horizontal_spacing)
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        subplot_titles=(" "),
+        horizontal_spacing=0.22,
+    )
+
+    fig.add_trace(
+        go.Bar(
+            x=top.values,
+            y=top.index.astype(str),
+            orientation="h",
+            name="Top",
+            marker_color="#0b766e",
+            text=[f"{v:,.0f}" for v in top.values],
+            textposition="outside",
+            cliponaxis=False,
+        ),
+        row=1,
+        col=1,
+    )
+
+    fig.add_trace(
+        go.Bar(
+            x=bottom.values,
+            y=bottom.index.astype(str),
+            orientation="h",
+            name="Bottom",
+            marker_color="#e56b2f",
+            text=[f"{v:,.0f}" for v in bottom.values],
+            textposition="outside",
+            cliponaxis=False,
+        ),
+        row=1,
+        col=2,
+    )
+
+    # 2. ปรับระยะขอบแกน X (X-axis Range Padding) เพื่อเผื่อพื้นที่ให้ตัวเลขปลายแท่งไม่หลุดขอบ
+    top_max = top.max() * 1.35 if not top.empty else 1
+    bottom_max = bottom.max() * 1.35 if not bottom.empty else 1
+    fig.update_xaxes(range=[0, top_max], row=1, col=1)
+    fig.update_xaxes(range=[0, bottom_max], row=1, col=2)
+
+    # 3. จัดการ Layout เผื่อระยะ Top Margin ให้ Title ไม่ชน Subtitle
+    fig.update_layout(
+        title_text=f"{title} ({x_label})",
+        title_y=0.98,
+        showlegend=False,
+        margin=dict(r=60, l=40, t=90, b=40),
+    )
+
+    # 4. ขยับตำแหน่ง Subtitle (Subplot Annotations) ลงมาเล็กน้อยป้องกันการชน Title หลัก
+    for annotation in fig["layout"]["annotations"]:
+        annotation["y"] = 1.02
+
+    return fig
 
 
 def is_other_model(value):
@@ -131,7 +253,6 @@ def model_class(brand, model):
 
 
 def model_group(brand, model):
-    """Return a selectable family while preserving the raw model value."""
     brand_name = str(brand).lower()
     model_name = str(model).strip().upper().replace(" ", "")
     if brand_name == "bmw":
@@ -170,26 +291,129 @@ def show_kpis(sales):
 def executive_page(sales):
     st.subheader("Page 1 · Executive Sales Overview")
     show_kpis(sales)
+    
+    # BQ5: Trend with Transaction Count on Dual Axis
     left, right = st.columns([1.5, 1])
     with left:
-        trend = sales.groupby(["year", "month"], as_index=False).agg(revenue=("net_revenue", "sum"), profit=("profit", "sum")).sort_values(["year", "month"])
+        trend = sales.groupby(["year", "month"], as_index=False).agg(
+            revenue=("net_revenue", "sum"), 
+            profit=("profit", "sum"),
+            transaction_count=("sales_id", "nunique")
+        ).sort_values(["year", "month"])
         trend["period"] = trend["year"].astype(str) + "-" + trend["month"].astype(str).str.zfill(2)
+        
         figure = go.Figure()
-        figure.add_bar(x=trend["period"], y=trend["revenue"], name="Revenue", marker_color="#0b766e")
-        figure.add_scatter(x=trend["period"], y=trend["profit"], name="Profit", mode="lines+markers", line_color="#e56b2f")
+        figure.add_bar(x=trend["period"], y=trend["revenue"], name="Revenue", marker_color="#00c2a8", yaxis="y1")
+        figure.add_scatter(x=trend["period"], y=trend["profit"], name="Profit", mode="lines+markers", line_color="#e56b2f", yaxis="y1")
+        figure.add_scatter(x=trend["period"], y=trend["transaction_count"], name="Transactions", mode="lines", line=dict(color="#377eb9", dash="dot"), yaxis="y2")
+        
+        figure.update_layout(
+            title="แนวโน้มรายได้ กำไรสุทธิ และจำนวนธุรกรรม (Revenue, Profit & Volume)",
+            yaxis=dict(title="บาท (THB)"),
+            yaxis2=dict(title="จำนวนธุรกรรม (คัน)", overlaying="y", side="right", showgrid=False)
+        )
         st.plotly_chart(chart_layout(figure, 400), use_container_width=True)
+        
     with right:
         payment = sales.groupby("payment_method", dropna=False).size().reset_index(name="sales_volume")
-        st.plotly_chart(chart_layout(px.pie(payment, names="payment_method", values="sales_volume", hole=.45, title="Payment Method Ratio"), 400), use_container_width=True)
+        st.plotly_chart(
+            chart_layout(
+                px.pie(
+                    payment,
+                    names="payment_method",
+                    values="sales_volume",
+                    hole=0.45,
+                    title="สัดส่วนช่องทางการชำระเงิน (Payment Method Ratio)",
+                    color_discrete_sequence=BRAND_PALETTE,
+                ),
+                400,
+            ),
+            use_container_width=True,
+        )
+        
+    # BQ5: Seasonality - เปรียบเทียบ pattern รายเดือนข้ามปี เพื่อดูว่ามีฤดูกาลหรือไม่
     left, right = st.columns(2)
     with left:
-        top = sales.groupby("brand", as_index=False)["net_revenue"].sum().nlargest(5, "net_revenue")
-        st.plotly_chart(chart_layout(px.bar(top.sort_values("net_revenue"), x="net_revenue", y="brand", orientation="h", color_discrete_sequence=["#e56b2f"])), use_container_width=True)
+        month_order = sales[["month", "month_name"]].dropna().drop_duplicates().sort_values("month")["month_name"].tolist()
+        season = sales.groupby(["year", "month", "month_name"], as_index=False)["profit"].sum()
+        season_fig = px.line(
+            season.sort_values(["year", "month"]),
+            x="month_name",
+            y="profit",
+            color="year",
+            markers=True,
+            category_orders={"month_name": month_order},
+            title="ความเป็นฤดูกาลของกำไร: เปรียบเทียบรายเดือนข้ามปี (Seasonality - BQ5)",
+            labels={"month_name": "เดือน", "profit": "กำไรรวม (บาท)", "year": "ปี"},
+            color_discrete_sequence=BRAND_PALETTE,
+        )
+        st.plotly_chart(chart_layout(season_fig, 380), use_container_width=True)
     with right:
-        channel = sales.groupby("source_type", dropna=False).size().reset_index(name="sales_volume")
-        st.plotly_chart(chart_layout(px.bar(channel, x="source_type", y="sales_volume", color_discrete_sequence=["#0b766e"])), use_container_width=True)
+        # BQ6: กลุ่มลูกค้าใดทำกำไรดีที่สุด
+        segment_profit = sales.groupby("customer_segment", dropna=False)["profit"].sum().reset_index().sort_values("profit", ascending=True)
+        segment_fig = px.bar(
+            segment_profit,
+            x="profit",
+            y="customer_segment",
+            orientation="h",
+            title="กำไรรวมตามกลุ่มลูกค้า (Total Profit by Customer Segment - BQ6)",
+            labels={"profit": "กำไรรวม (บาท)", "customer_segment": "กลุ่มลูกค้า"},
+            color_discrete_sequence=["#3d5a80"],
+        )
+        st.plotly_chart(chart_layout(segment_fig, 380), use_container_width=True)
+
     left, right = st.columns(2)
     with left:
+        # BQ1: แบรนด์ใดทำกำไรรวมสูงสุด-ต่ำสุด
+        profit_fig = top_bottom_diverging_chart(
+            sales, "brand", "profit",
+            title="แบรนด์ที่ทำกำไรรวมสูงสุด vs ต่ำสุด (Top/Bottom 5 Brand by Total Profit - BQ1)",
+            x_label="กำไรรวม (บาท)",
+        )
+        if profit_fig is not None:
+            st.plotly_chart(chart_layout(profit_fig), use_container_width=True)
+    with right:
+        # BQ4: Channel Acquisition Cost vs Profit Margin
+        if "source_type" in sales.columns:
+            channel_profit = sales.groupby("source_type", dropna=False).agg(
+                avg_cost=("cost_price", "mean"),
+                avg_margin=("profit_margin", "mean")
+            ).reset_index()
+            
+            channel_fig = px.scatter(
+                channel_profit, 
+                x="avg_cost", 
+                y="avg_margin", 
+                text="source_type",
+                size="avg_cost",
+                title="ต้นทุนและอัตรากำไรตามแหล่งจัดหา (Source Cost vs Margin)",
+                labels={"avg_cost": "ต้นทุนเฉลี่ย (บาท)", "avg_margin": "อัตรากำไรเฉลี่ย (%)"},
+                color_discrete_sequence=["#0b766e"]
+            )
+            channel_fig.update_traces(textposition='top center')
+            st.plotly_chart(chart_layout(channel_fig, 400), use_container_width=True)
+        else:
+            st.info("ไม่พบข้อมูลแหล่งจัดหา (DimAcquisitionSource)")
+
+    # BQ6: Regional Profitability Analysis
+    left, right = st.columns(2)
+    with left:
+        if "region" in sales.columns:
+            region_data = sales.groupby("region", as_index=False).agg(
+                avg_profit=("profit", "mean"),
+                total_profit=("profit", "sum")
+            ).sort_values("total_profit", ascending=False)
+            
+            reg_fig = px.bar(
+                region_data,
+                x="region",
+                y="total_profit",
+                title="กำไรรวมตามภูมิภาค (Total Profit by Region)",
+                labels={"region": "ภูมิภาค", "total_profit": "กำไรรวม (บาท)"},
+                color_discrete_sequence=["#2a9d8f"]
+            )
+            st.plotly_chart(chart_layout(reg_fig, 400), use_container_width=True)
+    with right:
         body_data = sales.groupby("body_type", dropna=False).size().reset_index(name="sales_volume")
         body_data["body_type"] = body_data["body_type"].fillna("Unknown")
         body_fig = px.pie(
@@ -197,56 +421,14 @@ def executive_page(sales):
             names="body_type",
             values="sales_volume",
             hole=0.45,
-            title="Body Type Ratio (สัดส่วนประเภทรถ)",
-            color_discrete_sequence=px.colors.qualitative.Safe,
+            title="สัดส่วนยอดขายตามประเภทรถ (Body Type Ratio)",
+            color_discrete_sequence=BRAND_PALETTE,
         )
         st.plotly_chart(chart_layout(body_fig, 400), use_container_width=True)
-    with right:
-        price_sales = sales.dropna(subset=["selling_price"]).copy()
-        if not price_sales.empty:
-            def compute_bin(price):
-                price = float(price)
-                if price < 300000:
-                    lower = int(price // 100000) * 100000
-                    upper = lower + 100000
-                elif price < 3000000:
-                    lower = 300000 + int((price - 300000) // 500000) * 500000
-                    upper = lower + 500000
-                elif price < 10000000:
-                    lower = 3000000 + int((price - 3000000) // 2000000) * 2000000
-                    upper = lower + 2000000
-                else:
-                    return pd.Series([10000000, "≥ ฿10,000,000"])
-                    
-                return pd.Series([lower, f"{money(lower)} - {money(upper)}"])
-
-            price_sales[["bin_lower", "price_range"]] = price_sales["selling_price"].apply(compute_bin)
-            price_data = (
-                price_sales.groupby(["bin_lower", "price_range"], as_index=False)
-                .size()
-                .rename(columns={"size": "sales_volume"})
-                .sort_values("bin_lower")
-            )
-            total_vol = price_data["sales_volume"].sum()
-            slice_labels = []
-            for _, row in price_data.iterrows():
-                pct = (row["sales_volume"] / total_vol) * 100
-                slice_labels.append(f"{pct:.1f}%" if pct >= 1.0 else "")
-
-            price_fig = px.pie(
-                price_data,
-                names="price_range",
-                values="sales_volume",
-                hole=0.45,
-                title="Price Range Ratio",
-                category_orders={"price_range": price_data["price_range"].tolist()},
-            )
-            price_fig.update_traces(text=slice_labels, textinfo="text")
-            st.plotly_chart(chart_layout(price_fig, 400), use_container_width=True)
 
 
-def profitability_page(sales, raw):
-    st.subheader("Page 2 · Product Profitability & ML Segment Analysis")
+def Stock_page(sales, raw):
+    st.subheader("Page 2 · Stock Analysis")
     available_tiers = sorted(sales["price_tier"].dropna().unique().tolist())
     selected_tiers = st.multiselect(
         "Price Segment Filter · เลือกกลุ่มราคาเพื่อแสดงข้อมูล Page 2",
@@ -256,27 +438,55 @@ def profitability_page(sales, raw):
     )
     sales = sales[sales["price_tier"].isin(selected_tiers)]
     if sales.empty:
-        st.warning("ไม่มีข้อมูลใน Price Segment ที่เลือก")
+        status_box("⚠️ ไม่มีข้อมูลใน Price Segment ที่เลือก", level="warn")
         return
-    st.markdown("#### Days on lot vs profit margin")
-    # Keep this as the primary full-width visual; points are still bucketed by days and segment.
-    grouped = sales.assign(days_bucket=(sales["days_on_lot"] // 5) * 5)
-    grouped = grouped.groupby(["days_bucket", "price_tier"], as_index=False).agg(
-        profit_margin=("profit_margin", "mean"), sales_volume=("sales_id", "nunique")
-    )
-    figure = px.scatter(
+    st.markdown("#### ระยะเวลาจอดตามกลุ่มราคา (Days on Lot by Segment - BQ3)")
+    sales_binned = sales.copy()
+    sales_binned["days_category"] = sales_binned["days_on_lot"].apply(classify_days_on_lot)
+    sales_binned = sales_binned.dropna(subset=["days_category"])
+
+    grouped = sales_binned.groupby(["days_category", "price_tier"], as_index=False).size().rename(columns={"size": "sales_volume"})
+
+    figure = px.bar(
         grouped,
-        x="days_bucket",
-        y="profit_margin",
-        size="sales_volume",
+        x="days_category",
+        y="sales_volume",
         color="price_tier",
-        hover_data={"sales_volume": True, "price_tier": True},
-        labels={"days_bucket": "Days on Lot (5-day bucket)", "profit_margin": "Profit Margin %", "sales_volume": "จำนวนคัน", "price_tier": "Price Segment"},
+        barmode="group",
+        category_orders={"days_category": DAYS_ON_LOT_ORDER},
+        labels={"days_category": "ช่วงเวลาที่จอด", "sales_volume": "จำนวนคัน", "price_tier": "Price Segment"},
+        color_discrete_sequence=BRAND_PALETTE,
     )
     figure.update_layout(height=520)
     st.plotly_chart(chart_layout(figure, 520), use_container_width=True)
 
-    st.markdown("#### Selling price by car age or mileage")
+    st.markdown("#### กลุ่มรถที่มีความเสี่ยง Dead Stock (>90 วัน) แยกตามประเภทตัวถังและเชื้อเพลิง (BQ3)")
+    dim_choice = st.radio("แยกตาม", ["ประเภทตัวถัง (Body Type)", "ประเภทเชื้อเพลิง (Fuel Type)"], horizontal=True, key="deadstock_dim")
+    dim_col = "body_type" if dim_choice.startswith("ประเภทตัวถัง") else "fuel_type"
+    risk = sales.copy()
+    risk["is_high_risk"] = risk["days_on_lot"] > 90
+    risk_summary = risk.groupby(dim_col, dropna=False).agg(
+        total_cars=("sales_id", "nunique"),
+        high_risk_cars=("is_high_risk", "sum"),
+        avg_days_on_lot=("days_on_lot", "mean"),
+    ).reset_index()
+    risk_summary["high_risk_pct"] = risk_summary.apply(lambda r: safe_ratio(r["high_risk_cars"], r["total_cars"]), axis=1)
+    risk_summary = risk_summary.sort_values("high_risk_pct", ascending=True)
+    risk_fig = px.bar(
+        risk_summary,
+        x="high_risk_pct",
+        y=dim_col,
+        orientation="h",
+        text=risk_summary["high_risk_pct"].map(lambda v: f"{v:.1f}%"),
+        title=f"สัดส่วนรถที่จอดเกิน 90 วัน (Dead Stock Risk) แยกตาม {dim_choice}",
+        labels={"high_risk_pct": "% ของคันที่จอดเกิน 90 วัน", dim_col: ""},
+        color_discrete_sequence=["#e56b2f"],
+    )
+    risk_fig.update_traces(textposition="outside")
+    st.plotly_chart(chart_layout(risk_fig, 340), use_container_width=True)
+    st.caption("ยิ่งเปอร์เซ็นต์สูง ยิ่งมีความเสี่ยงเป็น Dead Stock มาก ควรพิจารณาปรับราคาหรือทำโปรโมชันกับกลุ่มนี้ก่อน")
+
+    st.markdown("#### ราคาขายเฉลี่ยตามอายุรถหรือเลขไมล์ (Selling Price by Car Age or Mileage)")
     left = st.container()
     with left:
         chart_col1, chart_col2 = st.columns(2)
@@ -328,9 +538,16 @@ def profitability_page(sales, raw):
         figure = px.line(price_by_axis, x="chart_axis", y="selling_price", markers=True, custom_data=["cars"], labels={"chart_axis": axis_label, "selling_price": "ราคาขายเฉลี่ย (บาท)"}, color_discrete_sequence=["#e56b2f"])
         figure.update_traces(hovertemplate=f"<b>{axis_label}:</b> %{{x:,.0f}}<br><b>ราคาขายเฉลี่ย:</b> ฿%{{y:,.0f}}<br><b>จำนวนคัน:</b> %{{customdata[0]:,}} คัน<extra></extra>")
         st.plotly_chart(chart_layout(figure), use_container_width=True)
-    st.markdown("#### Brand → Model → Model Year matrix")
+
+    st.markdown("#### เมทริกซ์วิเคราะห์ Brand → Model → Model Year (BQ1)")
     matrix_search = st.text_input("ค้นหารุ่นใน matrix", placeholder="พิมพ์ชื่อรุ่น เช่น 320d หรือ C220", key="matrix_model_search")
-    matrix = sales.groupby(["brand", "model", "model_year"], as_index=False).agg(cost_price=("cost_price", "mean"), selling_price=("selling_price", "mean"), profit_margin=("profit_margin", "mean"), days_on_lot=("days_on_lot", "mean")).sort_values("selling_price", ascending=False)
+    matrix = sales.groupby(["brand", "model", "model_year"], as_index=False).agg(
+        cost_price=("cost_price", "mean"), 
+        selling_price=("selling_price", "mean"), 
+        total_profit=("profit", "sum"),
+        profit_margin=("profit_margin", "mean"), 
+        days_on_lot=("days_on_lot", "mean")
+    ).sort_values("total_profit", ascending=False)
     matrix = matrix[~matrix["model"].map(is_other_model)]
     if matrix_search.strip():
         search_text = matrix_search.strip()
@@ -342,18 +559,291 @@ def profitability_page(sales, raw):
             st.caption("รุ่นที่แนะนำใกล้เคียง: " + " · ".join(recommended))
         matrix = matrix[matrix["model"].astype(str).str.contains(search_text, case=False, na=False)]
     st.dataframe(matrix, use_container_width=True, hide_index=True)
-    
 
 
 def market_page(sales, listings):
-    st.subheader("Page 3 · Market Benchmark & Price Elasticity")
-    benchmark = listings.groupby("brand", as_index=False).agg(avg_ask_price=("ask_price", "mean"))
-    internal = sales.groupby("brand", as_index=False).agg(avg_selling_price=("selling_price", "mean"))
-    comparison = benchmark.merge(internal, on="brand", how="outer").sort_values("avg_ask_price", ascending=False).head(15)
-    long = comparison.melt("brand", var_name="metric", value_name="price").dropna()
-    st.plotly_chart(chart_layout(px.bar(long, x="brand", y="price", color="metric", barmode="group", labels={"price": "ราคาเฉลี่ย (บาท)"})), use_container_width=True)
-    ratio = sales.groupby("price_tier", as_index=False)["discount_to_deprec_ratio"].mean().sort_values("discount_to_deprec_ratio", ascending=False)
-    st.plotly_chart(chart_layout(px.bar(ratio, x="price_tier", y="discount_to_deprec_ratio", color_discrete_sequence=["#e56b2f"], labels={"discount_to_deprec_ratio": "Discount to Depreciation Ratio"})), use_container_width=True)
+    st.subheader("Page 3 · Market Benchmark & Price Elasticity (BQ2 & BQ7)")
+
+    # BQ2: Company vs Market Price Comparison — เทียบได้ทั้งตามแบรนด์, กลุ่มราคา, และประเภทรถ
+    st.markdown("#### ราคาบริษัทเทียบราคาตลาด (Company vs Market Price - BQ2)")
+    dim_label_map = {"แบรนด์ (Brand)": "brand", "กลุ่มราคา (Price Tier)": "price_tier", "ประเภทรถ (Body Type)": "body_type"}
+    dim_choice = st.radio("เปรียบเทียบตาม", list(dim_label_map.keys()), horizontal=True, key="benchmark_dim")
+    dim_col = dim_label_map[dim_choice]
+
+    internal = sales.groupby(dim_col, as_index=False)["selling_price"].mean().rename(columns={"selling_price": "company_price"})
+    market = sales.groupby(dim_col, as_index=False)["list_price"].mean().rename(columns={"list_price": "market_price"})
+
+    # 1. เปลี่ยนเป็น outer หรือ left เพื่อป้องกันข้อมูลหาย
+    benchmark = pd.merge(internal, market, on=dim_col, how="left").fillna(0)
+
+    # คำนวณ gap_pct (ปรับเป็นเปอร์เซ็นต์ * 100 เพื่อใชักับกราฟได้ง่ายขึ้น)
+    benchmark["gap_pct"] = benchmark.apply(
+        lambda r: safe_ratio(r["company_price"] - r["market_price"], r["market_price"])  if r["market_price"] > 0 else 0, 
+        axis=1
+    )
+
+    if dim_col == "brand":
+        # 2. ปรับการจัดเรียงเรียงตาม abs() ให้ปลอดภัยขึ้น
+        benchmark = benchmark.assign(abs_gap=benchmark["gap_pct"].abs()).sort_values("abs_gap", ascending=False).head(15).drop(columns=["abs_gap"])
+
+    # 3. สร้างกราฟแท่งเปรียบเทียบ พร้อม Hover Format (ใส่สกุลเงิน บาท)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=benchmark[dim_col], 
+        y=benchmark["company_price"], 
+        name="ราคาบริษัท (Company Price)", 
+        marker_color="#0b766e",
+        hovertemplate="%{x}<br>ราคาบริษัท: %{y:,.0f} บาท<extra></extra>"
+    ))
+    fig.add_trace(go.Bar(
+        x=benchmark[dim_col], 
+        y=benchmark["market_price"], 
+        name="ราคาตลาด (Market Benchmark)", 
+        marker_color="#e56b2f",
+        hovertemplate="%{x}<br>ราคาตลาด: %{y:,.0f} บาท<extra></extra>"
+    ))
+    fig.update_layout(title=f"เปรียบเทียบราคาขายเฉลี่ยของบริษัทกับราคาตลาด แยกตาม {dim_choice}", barmode='group')
+    st.plotly_chart(chart_layout(fig), use_container_width=True)
+
+    # 4. กราฟส่วนต่าง (%) แสดงเครื่องหมาย % บนแกน X และ Hover
+    gap_fig = px.bar(
+        benchmark.sort_values("gap_pct"),
+        x="gap_pct",
+        y=dim_col,
+        orientation="h",
+        title=f"ส่วนต่างราคาขายทียบตลาด (%) แยกตาม {dim_choice} — บวก = ตั้งราคาสูงกว่าตลาด, ลบ = ต่ำกว่าตลาด",
+        labels={"gap_pct": "ส่วนต่างราคา (%)", dim_col: ""},
+        color="gap_pct",
+        color_continuous_scale=["#e56b2f", "#d9e1df", "#0b766e"],
+        color_continuous_midpoint=0,
+    )
+    gap_fig.update_traces(hovertemplate="%{y}<br>ส่วนต่าง: %{x:.2f}%<extra></extra>")
+    gap_fig.update_xaxes(ticksuffix="%")
+    gap_fig.add_vline(x=0, line_dash="dash", line_color="#68727d")
+
+    st.plotly_chart(chart_layout(gap_fig, 340), use_container_width=True)
+    # BQ7: Discount to Depreciation Ratio & Consistency Check
+    st.markdown("#### ส่วนลดสอดคล้องกับค่าเสื่อมราคาจริงหรือไม่ (Discount vs Depreciation - BQ7)")
+    if "discount_to_deprec_ratio" in sales.columns:
+        left, right = st.columns(2)
+        with left:
+            ratio = sales.groupby("price_tier", as_index=False)["discount_to_deprec_ratio"].mean().sort_values("discount_to_deprec_ratio", ascending=False)
+            st.plotly_chart(
+                chart_layout(
+                    px.bar(
+                        ratio,
+                        x="price_tier",
+                        y="discount_to_deprec_ratio",
+                        title="อัตราส่วนส่วนลดต่อค่าเสื่อมราคาเฉลี่ย ตามกลุ่มราคา (%)",
+                        color_discrete_sequence=["#e56b2f"],
+                        labels={"discount_to_deprec_ratio": "Discount / Depreciation (%)", "price_tier": "กลุ่มราคา"},
+                    )
+                ),
+                use_container_width=True,
+            )
+        with right:
+            brand_dd = sales.groupby("brand", as_index=False).agg(
+                avg_discount=("discount_amount", "mean"),
+                avg_depreciation=("depreciation_amount", "mean"),
+            )
+            
+            # 1. กรองเฉพาะข้อมูลที่เป็นบวกเพื่อป้องกัน error ใน Log scale
+            brand_dd = brand_dd[(brand_dd["avg_discount"] > 0) & (brand_dd["avg_depreciation"] > 0)]
+
+            # 2. สร้าง Scatter Plot พร้อม Log scale
+            dd_fig = px.scatter(
+                brand_dd,
+                x="avg_depreciation",
+                y="avg_discount",
+                text="brand",
+                hover_name="brand",
+                title="ส่วนลดเฉลี่ย vs ค่าเสื่อมราคาเฉลี่ย ตามแบรนด์",
+                labels={"avg_depreciation": "ค่าเสื่อมราคาเฉลี่ย (บาท)", "avg_discount": "ส่วนลดเฉลี่ย (บาท)"},
+                color_discrete_sequence=["#0b766e"],
+                log_x=True,
+                log_y=True,
+            )
+
+            # 3. คำนวณช่วงขอบเขต min/max สำหรับเส้นประ 1:1 ใน Log Scale
+            min_val = min(brand_dd["avg_depreciation"].min(), brand_dd["avg_discount"].min())
+            max_val = max(brand_dd["avg_depreciation"].max(), brand_dd["avg_discount"].max())
+
+            dd_fig.add_shape(
+                type="line",
+                x0=min_val, y0=min_val,
+                x1=max_val, y1=max_val,
+                line=dict(color="#e56b2f", dash="dash")
+            )
+            
+            # 4. ปรับแต่งตำแหน่งและขนาดตัวอักษรไม่ให้ซ้อนทับ
+            dd_fig.update_traces(
+                textposition="bottom right",
+                textfont=dict(size=5),
+                cliponaxis=False
+            )
+            
+            st.plotly_chart(chart_layout(dd_fig), use_container_width=True)
+            st.caption("จุดที่อยู่ 'เหนือ' เส้นประ หมายถึงแบรนด์นั้นให้ส่วนลดมากกว่าค่าเสื่อมราคาจริง (เสี่ยงขาดทุนแฝง)")
+    else:
+        st.info("ไม่พบคอลัมน์ discount_to_deprec_ratio ในข้อมูล")
+
+
+def insights_page(sales):
+    st.subheader("Page 4 · Business Insights & Recommendations (5 ข้อมูลเชิงลึกเชิงธุรกิจ)")
+    st.caption("คำนวณสดจากข้อมูลภายใต้ตัวกรองปัจจุบัน ครอบคลุม 5 มุมมองเชิงลึกที่ทีมธุรกิจให้ความสำคัญ")
+    if sales.empty:
+        status_box("⚠️ ไม่มีข้อมูลเพียงพอสำหรับสร้าง Insight ภายใต้ตัวกรองปัจจุบัน", level="warn")
+        return
+
+    # ============ ข้อมูลเชิงลึก 1: ผลกระทบของระยะเวลาจอดสต็อกต่อกำไร ============
+    st.markdown("### 1. ผลกระทบของระยะเวลาจอดสต็อกต่อกำไร (Days on Lot vs. Profit Margin)")
+    lot_view = sales.copy()
+    lot_view["days_category"] = lot_view["days_on_lot"].apply(classify_days_on_lot)
+    lot_view = lot_view.dropna(subset=["days_category"])
+    lot_summary = lot_view.groupby("days_category").agg(
+        avg_margin=("profit_margin", "mean"),
+        avg_ratio=("discount_to_deprec_ratio", "mean"),
+        cars=("sales_id", "nunique"),
+    ).reindex(DAYS_ON_LOT_ORDER)
+    lot_chart_data = lot_summary.dropna(subset=["avg_margin"])
+
+    if not lot_chart_data.empty:
+        fig1 = go.Figure()
+        fig1.add_bar(x=lot_chart_data.index, y=lot_chart_data["avg_margin"], name="Profit Margin เฉลี่ย (%)", marker_color="#0b766e", yaxis="y1")
+        fig1.add_scatter(x=lot_chart_data.index, y=lot_chart_data["avg_ratio"], name="Discount/Depreciation Ratio (%)", mode="lines+markers", line_color="#e56b2f", yaxis="y2")
+        fig1.update_layout(
+            title="Profit Margin และ Discount-to-Depreciation Ratio ตามช่วงระยะเวลาจอด",
+            yaxis=dict(title="Profit Margin เฉลี่ย (%)"),
+            yaxis2=dict(title="Discount/Depreciation Ratio (%)", overlaying="y", side="right", showgrid=False),
+        )
+        st.plotly_chart(chart_layout(fig1, 380), use_container_width=True)
+
+    fast_label, slow_label = DAYS_ON_LOT_ORDER[0], DAYS_ON_LOT_ORDER[-1]
+    if fast_label in lot_summary.index and pd.notna(lot_summary.loc[fast_label, "avg_margin"]) and pd.notna(lot_summary.loc[slow_label, "avg_margin"]):
+        fast_margin = lot_summary.loc[fast_label, "avg_margin"]
+        slow_margin = lot_summary.loc[slow_label, "avg_margin"]
+        slow_ratio = lot_summary.loc[slow_label, "avg_ratio"]
+        direction = "ต่ำกว่า" if slow_margin < fast_margin else "ใกล้เคียงหรือสูงกว่า"
+        st.write(
+            f"รถที่จอดไม่เกิน 30 วัน มี Profit Margin เฉลี่ย {fast_margin:.2f}% ขณะที่รถที่จอดเกิน 90 วัน มี Margin เฉลี่ย {slow_margin:.2f}% "
+            f"({direction}กลุ่มจอดเร็ว) และมีอัตราส่วนส่วนลดต่อค่าเสื่อมราคาเฉลี่ยสูงถึง {slow_ratio:.1f}% "
+            f"ข้อมูลจาก FactSales สะท้อนว่ารถที่จอดนาน (days_on_lot) มีแนวโน้มถูกกัดกินกำไรจากทั้งค่าเสื่อมราคา (depreciation_amount) และส่วนลดที่ต้องให้ลูกค้าเพิ่มขึ้น (discount_amount)"
+        )
+    st.caption("💡 ข้อเสนอแนะ: กำหนดนโยบายการปรับราคาแบบขั้นบันไดเชิงรุก (Dynamic Pricing) — ติดตามอายุสต็อก → ประเมินความสนใจ → อัดโปรโมชัน → ปิดการขาย หากรถรุ่นใดมีแนวโน้มจอดนานเกินกำหนด ควรรีบให้ส่วนลดก่อนที่ค่าเสื่อมราคาจะทำให้เสียเปรียบทางต้นทุน")
+    st.divider()
+
+    # ============ ข้อมูลเชิงลึก 2: แนวโน้มตลาดตามประเภทเชื้อเพลิงและตัวถัง ============
+    st.markdown("### 2. แนวโน้มตลาดตามประเภทเชื้อเพลิงและตัวถัง (Fuel & Body Type Trends)")
+    fuel_summary = sales.groupby("fuel_type", dropna=False).agg(
+        avg_days_on_lot=("days_on_lot", "mean"),
+        avg_profit=("profit", "mean"),
+        cars=("sales_id", "nunique"),
+    ).sort_values("avg_profit", ascending=False)
+
+    if not fuel_summary.empty:
+        fig2 = go.Figure()
+        fig2.add_bar(x=fuel_summary.index, y=fuel_summary["avg_profit"], name="กำไรเฉลี่ย/คัน (บาท)", marker_color="#0b766e", yaxis="y1")
+        fig2.add_scatter(x=fuel_summary.index, y=fuel_summary["avg_days_on_lot"], name="Days on Lot เฉลี่ย (วัน)", mode="lines+markers", line_color="#e56b2f", yaxis="y2")
+        fig2.update_layout(
+            title="กำไรเฉลี่ยและความเร็วในการขาย (Days on Lot) ตามประเภทเชื้อเพลิง (DimCar.fuel_type)",
+            yaxis=dict(title="กำไรเฉลี่ย/คัน (บาท)"),
+            yaxis2=dict(title="Days on Lot เฉลี่ย (วัน)", overlaying="y", side="right", showgrid=False),
+        )
+        st.plotly_chart(chart_layout(fig2, 380), use_container_width=True)
+
+    alt_energy = fuel_summary.reindex(["EV", "Hybrid"]).dropna(how="all")
+    conventional = fuel_summary.reindex(["Petrol", "Diesel"]).dropna(how="all")
+    if not alt_energy.empty and not conventional.empty:
+        alt_days, conv_days = alt_energy["avg_days_on_lot"].mean(), conventional["avg_days_on_lot"].mean()
+        alt_profit, conv_profit = alt_energy["avg_profit"].mean(), conventional["avg_profit"].mean()
+        faster = "เร็วกว่า" if alt_days < conv_days else "ช้ากว่าหรือใกล้เคียงกับ"
+        more_profit = "สูงกว่า" if alt_profit > conv_profit else "ต่ำกว่าหรือใกล้เคียงกับ"
+        st.write(
+            f"กลุ่มพลังงานทางเลือก (EV/Hybrid) มี Days on Lot เฉลี่ย {alt_days:.1f} วัน และกำไรเฉลี่ย {money(alt_profit)}/คัน "
+            f"ซึ่ง{faster}รถสันดาปดั้งเดิม (Petrol/Diesel) ที่ {conv_days:.1f} วัน และให้กำไรเฉลี่ย {money(conv_profit)}/คัน ({more_profit}กลุ่มสันดาป)"
+        )
+    st.caption("💡 ข้อเสนอแนะ: นำความเร็วในการขายและกำไรเฉลี่ยของรถ EV/Hybrid มาเทียบกับรถสันดาปดั้งเดิมอย่างต่อเนื่อง หากกลุ่มพลังงานทางเลือกทำยอดขายได้เร็วกว่า ควรปรับโครงสร้างพอร์ตโฟลิโอโดยเพิ่มโควตาการรับซื้อรถกลุ่มนี้ให้มากขึ้น")
+    st.divider()
+
+    # ============ ข้อมูลเชิงลึก 3: ประสิทธิภาพของแหล่งรับซื้อ ============
+    st.markdown("### 3. ประสิทธิภาพของแหล่งรับซื้อ (Acquisition Source Efficiency)")
+    if "source_type" in sales.columns and sales["source_type"].notna().any():
+        source_eff = sales.groupby("source_type", dropna=False).agg(
+            avg_cost=("cost_price", "mean"),
+            avg_profit=("profit", "mean"),
+            total_profit=("profit", "sum"),
+            cars=("sales_id", "nunique"),
+        ).reset_index()
+
+        fig3 = px.scatter(
+            source_eff,
+            x="avg_cost",
+            y="avg_profit",
+            size="cars",
+            text="source_type",
+            title="ต้นทุนเฉลี่ย (cost_price) vs กำไรเฉลี่ย (profit) ตามแหล่งรับซื้อ · ขนาดจุด = จำนวนคัน",
+            labels={"avg_cost": "ต้นทุนเฉลี่ย (บาท)", "avg_profit": "กำไรเฉลี่ย (บาท)"},
+            color_discrete_sequence=["#0b766e"],
+        )
+        fig3.update_traces(textposition="top center")
+        st.plotly_chart(chart_layout(fig3, 380), use_container_width=True)
+
+        lowest_cost_src = source_eff.loc[source_eff["avg_cost"].idxmin(), "source_type"]
+        highest_profit_src = source_eff.loc[source_eff["avg_profit"].idxmax(), "source_type"]
+        best_profit_value = source_eff.set_index("source_type").loc[highest_profit_src, "avg_profit"]
+        st.write(
+            f"แหล่งรับซื้อ '{lowest_cost_src}' มีต้นทุนเฉลี่ยต่อคันต่ำที่สุด ในขณะที่แหล่ง '{highest_profit_src}' สร้างกำไรเฉลี่ยต่อคันสูงที่สุดที่ {money(best_profit_value)}/คัน"
+        )
+    st.caption("💡 ข้อเสนอแนะ: วิเคราะห์ต้นทุนจัดซื้อ → ระบุแหล่งกำไรสูง → จัดสรรงบประมาณ → เจรจาทำสัญญาระยะยาว โดยมุ่งเน้นการใช้ทรัพยากรไปกับช่องทางรับซื้อที่มีประวัติผลตอบแทนดีที่สุดเพื่อควบคุมต้นทุนตั้งแต่ต้นทาง")
+    st.divider()
+
+    # ============ ข้อมูลเชิงลึก 4: พฤติกรรมการชำระเงินตามระดับราคา ============
+    st.markdown("### 4. พฤติกรรมการชำระเงินตามระดับราคา (Payment Behavior by Price Tier)")
+    pay_ct = pd.crosstab(sales["price_tier"], sales["payment_method"], normalize="index") * 100
+    pay_long = pay_ct.reset_index().melt(id_vars="price_tier", var_name="payment_method", value_name="pct")
+    fig4 = px.bar(
+        pay_long,
+        x="price_tier",
+        y="pct",
+        color="payment_method",
+        barmode="stack",
+        title="สัดส่วนวิธีการชำระเงิน (DimCustomer.payment_method) ในแต่ละกลุ่มราคา (DimCar.price_tier)",
+        labels={"pct": "สัดส่วน (%)", "price_tier": "กลุ่มราคา", "payment_method": "วิธีชำระเงิน"},
+        color_discrete_sequence=BRAND_PALETTE,
+    )
+    st.plotly_chart(chart_layout(fig4, 380), use_container_width=True)
+
+    if "Finance/Leasing" in pay_ct.columns and not pay_ct.empty:
+        finance_share = pay_ct["Finance/Leasing"]
+        top_finance_tier = finance_share.idxmax()
+        st.write(f"กลุ่มราคา '{top_finance_tier}' พึ่งพาการผ่อนชำระ/ไฟแนนซ์มากที่สุด ({finance_share.max():.1f}% ของธุรกรรมในกลุ่มราคานี้)")
+    st.caption("💡 ข้อเสนอแนะ: ออกแบบแพ็กเกจสินเชื่อร่วมกับสถาบันการเงินให้ตรงกลุ่มเป้าหมาย เช่น จัดแคมเปญดอกเบี้ยพิเศษสำหรับกลุ่มที่พึ่งพาสินเชื่อสูง เพื่อเพิ่มอัตราการปิดการขาย")
+    st.divider()
+
+    # ============ ข้อมูลเชิงลึก 5: ความต้องการเชิงพื้นที่ ============
+    st.markdown("### 5. ความต้องการเชิงพื้นที่ (Regional Demand Dynamics)")
+    if "region" in sales.columns and sales["region"].notna().any():
+        region_body = pd.crosstab(sales["region"], sales["body_type"], normalize="index") * 100
+        if not region_body.empty:
+            heat_fig = px.imshow(
+                region_body,
+                text_auto=".0f",
+                color_continuous_scale=px.colors.sequential.Teal,
+                title="สัดส่วนประเภทรถ (body_type) ที่ขายได้ในแต่ละภูมิภาค (DimLocation.region) — %",
+                labels=dict(x="ประเภทรถ", y="ภูมิภาค", color="% ในภูมิภาค"),
+            )
+            st.plotly_chart(chart_layout(heat_fig, 380), use_container_width=True)
+
+            overall_share = sales["body_type"].value_counts(normalize=True) * 100
+            diff = region_body.subtract(overall_share, axis=1)
+            if diff.notna().any().any():
+                max_region, max_body = diff.stack().idxmax()
+                max_gap = diff.stack().max()
+                st.write(
+                    f"ภูมิภาค '{max_region}' มีสัดส่วนยอดขายรถประเภท '{max_body}' สูงกว่าค่าเฉลี่ยรวมทั้งประเทศถึง {max_gap:.1f} จุดเปอร์เซ็นต์ "
+                    f"บ่งชี้ถึงความต้องการเฉพาะทางในพื้นที่นี้ที่แตกต่างจากภาพรวม"
+                )
+    st.caption("💡 ข้อเสนอแนะ: วางกลยุทธ์การโอนย้ายสต็อกข้ามพื้นที่ — ประเมินอุปสงค์ภูมิภาค A → หารถจากภูมิภาค B → โอนย้ายสินค้า → ทำกำไรจากส่วนต่างราคา เพื่อนำรถจากพื้นที่ที่ความต้องการต่ำไปขายในพื้นที่ที่ให้ราคาสูงกว่า")
 
 
 def audit_page(sales):
@@ -379,7 +869,7 @@ if data:
     st.caption("Star schema analytics · One-to-many dimensions → facts · Active single-direction filters")
     with st.sidebar:
         st.header("Global Slicers")
-        page = st.radio("Canvas", ["Executive Overview", "Profitability & ML", "Market Benchmark", "QA Audit"])
+        page = st.radio("Canvas", ["Executive Overview", "Stock", "Market Benchmark", "Business Insights", "QA Audit"])
         st.divider()
         year_values = sorted(sales["year"].dropna().astype(int).unique())
         min_year, max_year = min(year_values), max(year_values)
@@ -387,41 +877,42 @@ if data:
             sales[["month", "month_name"]].dropna().drop_duplicates("month").itertuples(index=False, name=None),
             key=lambda item: item[0],
         )
+        month_options = [month_name for _, month_name in month_values]
         region_options = sorted(sales["region"].dropna().unique().tolist())
         brand_options = sorted(sales["brand"].dropna().unique().tolist())
 
         def reset_all_filters():
             st.session_state["filter_years"] = (min_year, max_year)
-            for month_number, _ in month_values:
-                st.session_state[f"month_{month_number}"] = False
-            st.session_state["filter_regions"] = []
+            st.session_state["filter_months"] = month_options
+            st.session_state["filter_regions"] = region_options
             st.session_state["filter_brands"] = []
 
         st.button("Clear Filters", on_click=reset_all_filters, use_container_width=True)
 
         years = st.slider("Year", min_value=min_year, max_value=max_year, value=(min_year, max_year), key="filter_years")
         selected_years = list(range(years[0], years[1] + 1))
-        st.markdown("**Month**")
-        selected_months = []
-        for month_number, month_name in month_values:
-            if st.checkbox(str(month_name), value=True, key=f"month_{month_number}"):
-                selected_months.append(month_name)
+        months = st.multiselect("Month", month_options, default=month_options, key="filter_months")
         regions = st.multiselect("Region", region_options, default=region_options, key="filter_regions")
-        brands = st.multiselect("Brand", brand_options, default=brand_options, key="filter_brands")
-        selections = {"year": selected_years, "month_name": selected_months, "region": regions, "brand": brands}
+        brands = st.multiselect("Brand", brand_options, default=[], key="filter_brands", placeholder="ทั้งหมด (All Brands)")
+        selections = {"year": selected_years, "month_name": months, "region": regions, "brand": brands}
         st.caption("Model keys: car_key, date_key, customer_key, location_key, source_key")
+        
     filtered_sales = apply_filters(sales, selections)
     filtered_listings = apply_filters(listings, selections)
+    
     if filtered_sales.empty:
-        st.warning("ไม่มีข้อมูลตามตัวกรองที่เลือก")
+        status_box("⚠️ ไม่มีข้อมูลตามตัวกรองที่เลือก กรุณาปรับเปลี่ยนตัวกรองในแถบด้านซ้าย", level="warn")
     elif page == "Executive Overview":
         executive_page(filtered_sales)
-    elif page == "Profitability & ML":
-        profitability_page(filtered_sales, data["raw"])
+    elif page == "Stock":
+        Stock_page(filtered_sales, data["raw"])
     elif page == "Market Benchmark":
         market_page(filtered_sales, filtered_listings)
+    elif page == "Business Insights":
+        insights_page(filtered_sales)
     else:
         audit_page(filtered_sales)
+        
     with st.expander("Data model & drill paths"):
         st.write("1:* DimCar/car_key → FactSales, FactMarketListings; DimDate/date_key → facts; DimCustomer/customer_key → FactSales; DimLocation/location_key → facts; DimAcquisitionSource/source_key → FactSales.")
         st.write("Drill-down: Brand → Model → Model Year and Year → Quarter → Month. Transaction detail is available from QA Audit.")
