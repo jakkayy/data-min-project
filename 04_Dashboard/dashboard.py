@@ -7,6 +7,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from plotly.subplots import make_subplots
+
 
 
 st.set_page_config(page_title="Used Car Intelligence", page_icon="car", layout="wide")
@@ -146,31 +148,79 @@ def classify_days_on_lot(days):
         return DAYS_ON_LOT_ORDER[3]
 
 
-def top_bottom_diverging_chart(frame, group_col, value_col, title, x_label, n=5, agg="sum"):
-    """สร้างกราฟแท่งแบบ diverging เพื่อเปรียบเทียบกลุ่มที่ดีที่สุด n อันดับ และแย่ที่สุด n อันดับ ในตัวชี้วัดเดียวกัน"""
-    grouped = frame.groupby(group_col, dropna=False)[value_col].agg(agg).sort_values(ascending=False)
-    grouped = grouped.dropna()
+def top_bottom_diverging_chart(
+    frame, group_col, value_col, title, x_label, n=5, agg="sum"
+):
+    """สร้างกราฟแท่งแบบ 2 ช่องเปรียบเทียบ Top n และ Bottom n แบบแยกแกน X"""
+    grouped = (
+        frame.groupby(group_col, dropna=False)[value_col]
+        .agg(agg)
+        .sort_values(ascending=False)
+        .dropna()
+    )
+
     if grouped.empty:
         return None
-    top = grouped.head(n)
-    bottom = grouped.tail(n)
-    labels_top = set(top.index)
-    combined = pd.concat([top, bottom])
-    combined = combined[~combined.index.duplicated(keep="first")]
-    combined = combined.reset_index()
-    combined.columns = [group_col, value_col]
-    combined["กลุ่ม"] = combined[group_col].apply(lambda v: "Top" if v in labels_top else "Bottom")
-    combined = combined.sort_values(value_col)
-    fig = px.bar(
-        combined,
-        x=value_col,
-        y=group_col,
-        orientation="h",
-        color="กลุ่ม",
-        color_discrete_map={"Top": "#0b766e", "Bottom": "#e56b2f"},
-        title=title,
-        labels={value_col: x_label, group_col: ""},
+
+    top = grouped.head(n).sort_values(ascending=True)
+    bottom = grouped.tail(n).sort_values(ascending=True)
+
+    # 1. เพิ่มระยะห่างระหว่างซ้าย-ขวา (horizontal_spacing)
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        subplot_titles=(" "),
+        horizontal_spacing=0.22,
     )
+
+    fig.add_trace(
+        go.Bar(
+            x=top.values,
+            y=top.index.astype(str),
+            orientation="h",
+            name="Top",
+            marker_color="#0b766e",
+            text=[f"{v:,.0f}" for v in top.values],
+            textposition="outside",
+            cliponaxis=False,
+        ),
+        row=1,
+        col=1,
+    )
+
+    fig.add_trace(
+        go.Bar(
+            x=bottom.values,
+            y=bottom.index.astype(str),
+            orientation="h",
+            name="Bottom",
+            marker_color="#e56b2f",
+            text=[f"{v:,.0f}" for v in bottom.values],
+            textposition="outside",
+            cliponaxis=False,
+        ),
+        row=1,
+        col=2,
+    )
+
+    # 2. ปรับระยะขอบแกน X (X-axis Range Padding) เพื่อเผื่อพื้นที่ให้ตัวเลขปลายแท่งไม่หลุดขอบ
+    top_max = top.max() * 1.35 if not top.empty else 1
+    bottom_max = bottom.max() * 1.35 if not bottom.empty else 1
+    fig.update_xaxes(range=[0, top_max], row=1, col=1)
+    fig.update_xaxes(range=[0, bottom_max], row=1, col=2)
+
+    # 3. จัดการ Layout เผื่อระยะ Top Margin ให้ Title ไม่ชน Subtitle
+    fig.update_layout(
+        title_text=f"{title} ({x_label})",
+        title_y=0.98,
+        showlegend=False,
+        margin=dict(r=60, l=40, t=90, b=40),
+    )
+
+    # 4. ขยับตำแหน่ง Subtitle (Subplot Annotations) ลงมาเล็กน้อยป้องกันการชน Title หลัก
+    for annotation in fig["layout"]["annotations"]:
+        annotation["y"] = 1.02
+
     return fig
 
 
@@ -528,7 +578,7 @@ def market_page(sales, listings):
 
     # คำนวณ gap_pct (ปรับเป็นเปอร์เซ็นต์ * 100 เพื่อใชักับกราฟได้ง่ายขึ้น)
     benchmark["gap_pct"] = benchmark.apply(
-        lambda r: safe_ratio(r["company_price"] - r["market_price"], r["market_price"]) * 100 if r["market_price"] > 0 else 0, 
+        lambda r: safe_ratio(r["company_price"] - r["market_price"], r["market_price"])  if r["market_price"] > 0 else 0, 
         axis=1
     )
 
@@ -561,7 +611,7 @@ def market_page(sales, listings):
         x="gap_pct",
         y=dim_col,
         orientation="h",
-        title=f"ส่วนต่างราคาบริษัทเทียบตลาด (%) แยกตาม {dim_choice} — บวก = ตั้งราคาสูงกว่าตลาด, ลบ = ต่ำกว่าตลาด",
+        title=f"ส่วนต่างราคาขายทียบตลาด (%) แยกตาม {dim_choice} — บวก = ตั้งราคาสูงกว่าตลาด, ลบ = ต่ำกว่าตลาด",
         labels={"gap_pct": "ส่วนต่างราคา (%)", dim_col: ""},
         color="gap_pct",
         color_continuous_scale=["#e56b2f", "#d9e1df", "#0b766e"],
@@ -572,7 +622,6 @@ def market_page(sales, listings):
     gap_fig.add_vline(x=0, line_dash="dash", line_color="#68727d")
 
     st.plotly_chart(chart_layout(gap_fig, 340), use_container_width=True)
-    st.caption("แถบที่ยื่นไปทางขวา (สีเขียว) หมายถึงราคาบริษัทสูงกว่าตลาด — หากเกิน 5% ควรพิจารณาโปรโมชัน ส่วนแถบที่ยื่นไปทางซ้าย (สีส้ม) หมายถึงตั้งราคาต่ำกว่าตลาดจนอาจเสียกำไรฟรี")
     # BQ7: Discount to Depreciation Ratio & Consistency Check
     st.markdown("#### ส่วนลดสอดคล้องกับค่าเสื่อมราคาจริงหรือไม่ (Discount vs Depreciation - BQ7)")
     if "discount_to_deprec_ratio" in sales.columns:
