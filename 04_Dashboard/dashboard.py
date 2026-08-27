@@ -303,9 +303,9 @@ def executive_page(sales):
         trend["period"] = trend["year"].astype(str) + "-" + trend["month"].astype(str).str.zfill(2)
         
         figure = go.Figure()
-        figure.add_bar(x=trend["period"], y=trend["revenue"], name="Revenue", marker_color="#0b766e", yaxis="y1")
+        figure.add_bar(x=trend["period"], y=trend["revenue"], name="Revenue", marker_color="#00c2a8", yaxis="y1")
         figure.add_scatter(x=trend["period"], y=trend["profit"], name="Profit", mode="lines+markers", line_color="#e56b2f", yaxis="y1")
-        figure.add_scatter(x=trend["period"], y=trend["transaction_count"], name="Transactions", mode="lines", line=dict(color="#2a9d8f", dash="dot"), yaxis="y2")
+        figure.add_scatter(x=trend["period"], y=trend["transaction_count"], name="Transactions", mode="lines", line=dict(color="#377eb9", dash="dot"), yaxis="y2")
         
         figure.update_layout(
             title="แนวโน้มรายได้ กำไรสุทธิ และจำนวนธุรกรรม (Revenue, Profit & Volume)",
@@ -655,7 +655,7 @@ def market_page(sales, listings):
                 brand_dd,
                 x="avg_depreciation",
                 y="avg_discount",
-                text="brand", # แก้ไขคำผิดจาก "์brand"
+                text="brand",
                 hover_name="brand",
                 title="ส่วนลดเฉลี่ย vs ค่าเสื่อมราคาเฉลี่ย ตามแบรนด์",
                 labels={"avg_depreciation": "ค่าเสื่อมราคาเฉลี่ย (บาท)", "avg_discount": "ส่วนลดเฉลี่ย (บาท)"},
@@ -677,8 +677,8 @@ def market_page(sales, listings):
             
             # 4. ปรับแต่งตำแหน่งและขนาดตัวอักษรไม่ให้ซ้อนทับ
             dd_fig.update_traces(
-                textposition="top center",
-                textfont=dict(size=10),
+                textposition="bottom right",
+                textfont=dict(size=5),
                 cliponaxis=False
             )
             
@@ -887,7 +887,7 @@ if data:
             st.session_state["filter_regions"] = region_options
             st.session_state["filter_brands"] = []
 
-        st.button("🧹 Clear Filters", on_click=reset_all_filters, use_container_width=True)
+        st.button("Clear Filters", on_click=reset_all_filters, use_container_width=True)
 
         years = st.slider("Year", min_value=min_year, max_value=max_year, value=(min_year, max_year), key="filter_years")
         selected_years = list(range(years[0], years[1] + 1))
