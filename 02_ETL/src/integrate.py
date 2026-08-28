@@ -169,8 +169,8 @@ def integrate_star_schema(
       how='left',
   )
 
-  # 2. DimDate
-  date_range = pd.date_range(start='2024-01-01', end='2026-12-31', freq='D')
+  # 2. DimDate (ครอบคลุมเฉพาะวันที่มีอยู่จริง ไม่เกินวันนี้)
+  date_range = pd.date_range(start='2024-01-01', end=pd.Timestamp.today().normalize(), freq='D')
   dim_date = pd.DataFrame({'full_date': date_range})
   dim_date['date_key'] = (
       dim_date['full_date'].dt.strftime('%Y%m%d').astype(int)
@@ -224,8 +224,10 @@ def integrate_star_schema(
       1, 4, size=len(df_trans)
   )
 
-  # Generate date_key for sale
-  random_dates = np.random.choice(dim_date['date_key'], size=len(df_trans))
+  # Generate date_key for sale (only past/present dates, no future)
+  today_key = int(pd.Timestamp.today().strftime('%Y%m%d'))
+  valid_date_keys = dim_date.loc[dim_date['date_key'] <= today_key, 'date_key']
+  random_dates = np.random.choice(valid_date_keys, size=len(df_trans))
   df_trans['date_key'] = random_dates
 
   fact_sales = pd.DataFrame({
